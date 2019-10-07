@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
-// import HospitalMain from '../lifecare-component/cards/hospitalmain/hospitalmain.component.js';
 import $ from 'jquery';
-// import _ from 'lodash';
-// import './lifecare-container.css';
-// import SearchInput, {createFilter} from 'react-search-input';
-// import logo from '../lifecarelogo.png'
-// import Footer from '../lifecare-component/footer/footer.component';
-// import AdminComponent from '../lifecare-component/cards/admin/AdminComponent';
-// import Login from '../lifecare-component/cards/login/login';
-// import { Modal,ModalManager,Effect} from 'react-dynamic-modal';
+import UserRegister from '../userRegister/userResigter';
 
 class Login extends Component {
   constructor(props){
@@ -16,10 +8,11 @@ class Login extends Component {
     this.state={
         username: '',
         password: '',
-        // loginSuccess:false
+        signUpMode: false
     }
     this.inputOnChange=this.inputOnChange.bind(this);
     this.getEncodedString=this.getEncodedString.bind(this);
+    this.onSignupClick=this.onSignupClick.bind(this);
   }
 
   getEncodedString(value) {
@@ -53,8 +46,18 @@ class Login extends Component {
       }
     }
 
+    onSignupClick(signUpMode){
+        this.setState({signUpMode});
+    }
+
  render () {
-     const {username, password} = this.state;
+     const {username, password, signUpMode} = this.state;
+
+     if(signUpMode) {
+         return (
+             <UserRegister onSignupClick={this.onSignupClick}/>
+         )
+     }
       return (
         <div className="container well">
             <div className="form-group">
@@ -79,6 +82,10 @@ class Login extends Component {
             </div>
             <div className="form-group">
                 <label className="form-check-label"><input type="checkbox"/> Remember me</label>
+            </div>
+            <div className="form-group">
+                <label className="form-check-label">New User?</label>
+                <button type="link" className="btn btn-link" onClick={this.onSignupClick}> Sign Up</button>
             </div>
             <button type="submit" className="btn btn-primary"  onClick={()=>this.onSignin(username, password)}>Sign in</button>
         </div>

@@ -84,6 +84,24 @@ app.post('/login',function(req,res){
   }
 });
 
+app.post('/register',function(req,res){
+  console.log(JSON.stringify(req.body));
+  let usersCollection = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
+  const username = req.body.username;
+  const password = getDecodedString(req.body.password);
+  usersCollection.users.push({'username' : username, 'password': password});  
+  console.log('info', 'Registered user:', usersCollection);
+  fs.writeFile ('./users.json',JSON.stringify(usersCollection , null, 2) , function(err) {
+    if (err){
+      console.log("Register User Error | "+err);
+      res.header('Access-Control-Allow-Origin','*').status(400).json({registerSuccess : false, status : 400});      
+    } else {
+      res.header('Access-Control-Allow-Origin','*');
+      res.status(200).json({registerSuccess : true, status : 200});
+    }
+  });
+});
+
 app.listen(8282,function(){
   console.log('App running successfully: 8282');
 });
