@@ -37,12 +37,17 @@ handleRate = (rate) =>{
      ModalManager.open(<MyModal effect={effect} hosName={this.props.name} id={this.props.lookupid}/>);
   }
 
+  getAddressFixed(text) {
+    if(text.length > 50) return <div>{text.substring(0, 50)}<button type="button" className="btn btn-link">...</button></div>;
+    return text;
+  }
+
   render () {
     let {name,address,aboutUs,url}=this.props;
 
     var cardStyle = {
                 color : 'black',
-                height :'600px',
+                height :'400px',
                 marginBottom: "30px",
                 backgroundColor: "#FFF",
               };
@@ -59,7 +64,6 @@ handleRate = (rate) =>{
     const effect= Effect.FlipHorizontal3D;
     return(
       <div>
-
         <ThemeProvider theme={theme}>
            <Drawer active={this.state.active} onOverlayClick={this.handleToggle} type="right"  >
            <AppBar title='Feedback'>
@@ -88,7 +92,7 @@ handleRate = (rate) =>{
         <ThemeProvider theme={theme}>
               <Card style={cardStyle}>
               <CardTitle
-                title={name}
+                title={name.substring(0, 35)}
                 className="card-title"
                />
              <CardActions className="card-rating">
@@ -106,11 +110,13 @@ handleRate = (rate) =>{
                    <  span className="glyphicon glyphicon-star-empty"></span>
                </Button>
             <div className="card-text">
-              <CardText >{address}</CardText>
+              <CardText >{this.getAddressFixed(address)}</CardText>
             </div>
+            <div>
             <CardActions className="card-action">
-               <Button label="View More"  neutral="false" className="pull-right"  raised primary onClick={()=>this.handleClick(effect)}/>
+               <button type="button" id='view-more' neutral="false" className="btn btn-link pull-right"  raised primary onClick={()=>this.handleClick(effect)}>View More</button>
             </CardActions>
+            </div>
             </Card>
           </ThemeProvider>
       </div>
@@ -120,56 +126,3 @@ handleRate = (rate) =>{
 }
 
 export default HospitalMain;
-
-// <CardText style={TextStyle} >{aboutUs}</CardText>
-
-// <div className="panel panel-default">
-//   <div className="panel-heading">
-//       <h4>{name}</h4></div>
-//
-//       <div className="panel-body">
-//         {address}
-//       // <br/>
-//       <button className="btn btn-primary pull-right" role="button" type="button"
-//         onClick={()=>this.handleClick(effect)}>view details</button>
-//       </div>
-//   </div>
-
-// <Card level={2} >
-//   {name}
-//   {address}
-//   <button>
-//       clickme
-//   </button>
-// </Card>
-// <div>
-//   {name}
-// </div>
-
-// <div className="card">
-//    <img className="card-img-top" src="..." alt="Card image cap"/>
-//      <div className="card-header">
-//         Featured
-//     </div>
-//   <div className="card-block">
-//       <h4>{name}</h4></div>
-//
-//       <div className="card-text">
-//         {address}
-//
-//       <button className="btn btn-primary pull-right" role="button" type="button"
-//         onClick={()=>this.handleClick(effect)}>view details</button>
-//       </div>
-//   </div>
-
-      // <div className="panel panel-default">
-      //   <div className="panel-heading">
-      //       <h4>{name}</h4></div>
-      //       <div className="panel-body">
-      //         {address}<br/>
-      //         {aboutUs}
-      //       <br/>
-      //       <button className="btn btn-primary pull-right" role="button" type="button"
-      //         onClick={()=>this.handleClick(effect)}>view details</button>
-      //       </div>
-      //   </div>
