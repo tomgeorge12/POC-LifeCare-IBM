@@ -1,0 +1,20 @@
+{
+  "lifecare":{
+    "facility":[
+      {
+        "hospitalname":"IBM Hospital A",
+				"address": "D4, Manyata tech park, bangalore-500056",
+				"doctorList": [{
+					"props1": {
+						"dname": "Rama",
+						"specialisation": "Heart surgeon"
+					},
+					"props2": {
+						"dname": "Nitin",
+						"specialisation": "Psychiatrist"
+					}
+				}]
+      }
+    ]
+  }
+}

@@ -1,0 +1,29 @@
+{
+  "name": "lifecare",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "^3.3.7",
+    "font-awesome": "^4.7.0",
+    "jquery": "^3.2.1",
+    "moment": "^2.18.1",
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4",
+    "react-dynamic-modal": "^1.1.1",
+    "react-flipcard": "^0.2.1",
+    "react-paginate": "^4.4.2",
+    "react-rating": "^0.7.1",
+    "react-router-link": "^2.0.2",
+    "react-search-input": "^0.10.4",
+    "react-toolbox": "^2.0.0-beta.8"
+  },
+  "devDependencies": {
+    "react-scripts": "0.9.5"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test --env=jsdom",
+    "eject": "react-scripts eject"
+  }
+}

@@ -1,0 +1,43 @@
+.card-block{
+  background-color: #428bca;
+  width: 300px;
+  height: 300px;
+}
+.card-header{
+  background-color: grey;
+}
+.panel-default{
+  margin-left: 20px;
+  margin-bottom: 10px;
+  height: 250px;
+  width: 250px;
+}
+.panel-heading h4{
+  height: 100px;
+}
+.panel-heading{
+  background-image: url("aa.jpg");
+}
+.panel-body{
+  /*height: 100px;*/
+  background-color: #dfe3e5;
+}
+h4{
+  text-align: center;
+}
+.card-title{
+  height:200px;
+}
+
+.card-text{
+  margin: 10px;
+  height:30px;
+}
+
+.card-action{
+  margin-top: 30px;
+  height:100px;
+}
+.card-rating{
+  margin-bottom: 10px;
+}
