@@ -11,7 +11,7 @@ import $ from 'jquery';
 // import { Modal,ModalManager,Effect} from 'react-dynamic-modal';
 
 class UserRegister extends Component {
-  constructor(props){
+    constructor(props){
     super(props);
     this.state={
         username: '',
@@ -20,77 +20,81 @@ class UserRegister extends Component {
     }
     this.inputOnChange=this.inputOnChange.bind(this);
     this.getEncodedString=this.getEncodedString.bind(this);
-  }
+}
 
-  getEncodedString(value) {
+getEncodedString(value) {
     return typeof value === 'string' ? window.btoa(value) : value;
-  }
+}
 
-  onSubmit(){
-      const {username, password} = this.state;
+onSubmit(){
+    const {username, password, confirmPassword} = this.state;
     const login = {
-        username: this.getEncodedString(username),
+        username,
         password: this.getEncodedString(password),
     }
-    $.ajax({
-        type: 'POST',
-        data:login,
-        dataType:'json',
-        url: 'http://localhost:8282/login',
-           success: (data)=> {
-             this.props.onSignin(data.loginSuccess);
-           },
-        error: function(error) {
-          if(error.loginSuccess === 'false') this.props.onSignin(error.loginSuccess)
-          else alert('error post data...');
-        }
-      });
+    if(password === confirmPassword) {
+        $.ajax({
+            type: 'POST',
+            data:login,
+            dataType:'json',
+            url: 'http://localhost:8282/login',
+                success: (data)=> {
+                    this.props.onSignin(data.loginSuccess);
+                },
+            error: function(error) {
+                if(error.loginSuccess === 'false') this.props.onSignin(error.loginSuccess)
+                else alert('error post data...');
+            }
+            });
+    } else {
+        alert('Password Mismatch');
     }
+}
 
-    inputOnChange(e, type){
-      if(e) {
-        this.setState({[type]:e.target.value});
-      }
+inputOnChange(e, type){
+    if(e) {
+    this.setState({[type]:e.target.value});
     }
+}
 
- render () {
-     const {username, password} = this.state;
-      return (
-        <div className="container well">
-            <div className="form-group">
-                <label for="username">Username</label>
-                <input 
-                    type="text"
-                    className="form-control"
-                    value={username}
-                    onChange={(e)=>this.inputOnChange(e, 'username')}
-                    id="username"
-                    placeholder="Username"/>
-            </div>
-            <div className="form-group">
-                <label for="inputPassword">Password</label>
-                <input
-                    type="password"
-                    className="form-control"
-                    id="inputPassword"
-                    value={password}
-                    onChange={(e)=>this.inputOnChange(e, 'password')}
-                    placeholder="Password"/>
-            </div>
-            <div className="form-group">
-                <label for="confirmPassword">Password</label>
-                <input
-                    type="password"
-                    className="form-control"
-                    id="confirmPassword"
-                    value={confirmPassword}
-                    onChange={(e)=>this.inputOnChange(e, 'confirmPassword')}
-                    placeholder="Confirm Password"/>
-            </div>
-            <button type="submit" className="btn btn-primary"  onClick={()=>this.onSubmit(username, password)}>Submit</button>
+render () {
+    const {username, password} = this.state;
+    return (
+    <div className="container well">
+        <div className="form-group">
+            <label for="username">Username</label>
+            <input 
+                type="text"
+                className="form-control"
+                value={username}
+                onChange={(e)=>this.inputOnChange(e, 'username')}
+                id="username"
+                placeholder="Username"/>
         </div>
-      );
-    }
+        <div className="form-group">
+            <label for="inputPassword">Password</label>
+            <input
+                type="password"
+                className="form-control"
+                id="inputPassword"
+                value={password}
+                onChange={(e)=>this.inputOnChange(e, 'password')}
+                placeholder="Password"/>
+        </div>
+        <div className="form-group">
+            <label for="confirmPassword">Password</label>
+            <input
+                type="password"
+                className="form-control"
+                id="confirmPassword"
+                value={confirmPassword}
+                onChange={(e)=>this.inputOnChange(e, 'confirmPassword')}
+                placeholder="Confirm Password"/>
+        </div>
+        <button type="submit" className="btn btn-primary"  onClick={()=>this.onSubmit(username, password)}>Submit</button>
+    </div>
+    );
+}
 }
 
 export default UserRegister;
