@@ -65,59 +65,54 @@ handleRate = (rate) =>{
     return(
       <div>
         <ThemeProvider theme={theme}>
-           <Drawer active={this.state.active} onOverlayClick={this.handleToggle} type="right"  >
-           <AppBar title='Feedback'>
-
-           </AppBar>
-           <div  style={drawerStyle} >
-             <h4>Your Feedback helps us improve Lifecare</h4>
-             <ThemeProvider  theme={theme}>
-
-            <Input type='text' label='Enter Reference ID' />
-
-            </ThemeProvider>
-
-             <Rating
-              fractions={2}  onClick={(rate)=>{this.handleRate(rate)}}
-                      empty={<img src={img_empty} alt="hi" height="25" width="25" className="icon" />}
-                      full={<img src={img_full} alt="hi" height="25" width="25" className="icon" />} />
-                      <br/><br/><br/>
-                      <ThemeProvider  theme={theme}>
-                      <Button label='Submit' raised accent primary  />
-                      </ThemeProvider>
-                 </div>
-           </Drawer>
-         </ThemeProvider>
-
+          <Drawer active={this.state.active} onOverlayClick={this.handleToggle} type="right"  >
+            <AppBar title='Feedback' />
+            <div  style={drawerStyle} >
+              <h4>Your Feedback helps us improve Lifecare</h4>
+              <ThemeProvider  theme={theme}>
+                <Input type='text' label='Enter Reference ID' />
+              </ThemeProvider>
+              <Rating
+                fractions={2} 
+                onClick={(rate)=>{this.handleRate(rate)}}
+                empty={<img src={img_empty} alt="hi" height="25" width="25" className="icon" />}
+                full={<img src={img_full} alt="hi" height="25" width="25" className="icon" />} />
+              <br/><br/><br/>
+              <ThemeProvider  theme={theme}>
+                <Button label='Submit' raised accent primary  />
+              </ThemeProvider>
+            </div>
+          </Drawer>
+        </ThemeProvider>
         <ThemeProvider theme={theme}>
-              <Card style={cardStyle}>
-              <CardTitle
-                title={name.substring(0, 35)}
-                className="card-title"
-               />
-             <CardActions className="card-rating">
-               <Rating  readonly
-                   initialRate={3.5}
-                   fractions={2}
-                    empty={<img src={img_empty} height="25" width="25" className="icon" />}
-                    full={<img src={img_full} height="25" width="25" className="icon" />} />
-             </CardActions>
-              <CardMedia
-                aspectRatio="wide"
-                image={url}
-              />
-              <Button   floating primary mini onClick={this.handleToggle}>
-                   <  span className="glyphicon glyphicon-star-empty"></span>
-               </Button>
+          <Card style={cardStyle}>
+            <CardTitle
+              title={name.substring(0, 35)}
+              className="card-title"
+            />
+            <Button floating primary mini onClick={this.handleToggle}>
+              <span className="glyphicon glyphicon-star-empty"></span>
+            </Button>
+            <CardActions className="card-rating">
+              <Rating  readonly
+                initialRate={3.5}
+                fractions={2}
+                empty={<img src={img_empty} height="25" width="25" className="icon" />}
+                full={<img src={img_full} height="25" width="25" className="icon" />} />
+            </CardActions>
+            <CardMedia
+              aspectRatio="wide"
+              image={url}
+            />
             <div className="card-text">
               <CardText >{this.getAddressFixed(address)}</CardText>
             </div>
             <div>
             <CardActions className="card-action">
-               <button type="button" id='view-more' neutral="false" className="btn btn-link pull-right"  raised primary onClick={()=>this.handleClick(effect)}>View More</button>
+              <button type="button" id='view-more' neutral="false" className="btn btn-link pull-right"  raised primary onClick={()=>this.handleClick(effect)}>View More</button>
             </CardActions>
             </div>
-            </Card>
+          </Card>
           </ThemeProvider>
       </div>
     )
