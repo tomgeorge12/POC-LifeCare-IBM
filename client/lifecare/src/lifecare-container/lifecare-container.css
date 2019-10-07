@@ -118,3 +118,17 @@ li{
 .page-numbers{
   text-align: center;
 }
+
+.logo-login {
+  background-color: #17506d;
+  margin-bottom: 60px;
+  color: #fff;
+  height: 196px;
+}
+.img-login {
+  height: 85px;
+  width: 180px;
+  margin-bottom: 16px;
+  margin-top: 56px;
+  margin-left: 600px;
+}
