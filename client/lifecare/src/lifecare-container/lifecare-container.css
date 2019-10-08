@@ -99,7 +99,30 @@ li{
   text-align: center;
 }
 
-.login-container{
-  width: 450px;
-  background-color: #f5fcff6b;
+.login-form{
+    width: 70%;
+    background-color: #f5fcff6b;
+    height: 64%;
 }
+
+.login-jumbotron {
+  display: inline-block;
+  background-color: #6ec1e938 !important;
+  color: #fff;
+  height: 500px !important;
+  margin-top: 130px !important;
+  /* margin-right: 660px !important;
+  margin-left: 660px !important; */
+  width: 400px;
+  margin-left: 47%;
+  text-align: center;
+}
+.login-container {
+  background-image: url("wp3592452.jpg");
+  opacity: 1;
+  height: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+

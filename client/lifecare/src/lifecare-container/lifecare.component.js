@@ -83,8 +83,8 @@ class LifeCycle extends Component {
 
     if(!login) {
       return(
-        <div className=''>
-          <Header hideSearch={!login} searchUpdated={this.searchUpdated}/>          
+        <div className='text-center login-container'> 
+          {/* <div className=''/>          */}
           <Login onSignin={this.onSignin}/>
         </div>)
     } 

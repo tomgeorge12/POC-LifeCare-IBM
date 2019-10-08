@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {Link} from 'react-router-link';
 import SearchInput from 'react-search-input';
 import 'font-awesome/css/font-awesome.min.css';
-import logo from '../../lifecarelogo.png'
+import logo from '../../lifecarelogo_Red.png'
 import './header.css';
 
 class Header extends Component{
@@ -12,7 +12,7 @@ class Header extends Component{
       <footer>
         <div id="jumbotron" className="header-logo text-center">
           <img className="header-img" src={logo}/>
-          {!this.props.hideSearch && <SearchInput id="search-input" onChange={this.props.searchUpdated} />}
+          <SearchInput id="search-input" onChange={this.props.searchUpdated} />
         </div>
       </footer>
       );
@@ -20,5 +20,3 @@ class Header extends Component{
   }
 
 export default Header;
-
- // <p><a href="http://www.unm.edu" class=""><img src="http://webcore.unm.edu/v2/images/unm-transparent-white.png" class=""/></a></p>

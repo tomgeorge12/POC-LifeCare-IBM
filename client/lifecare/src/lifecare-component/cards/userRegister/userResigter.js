@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import '../../../lifecare-container/lifecare-container.css';
+import logo from '../../../lifecarelogo_Red.png'
 
 class UserRegister extends Component {
     constructor(props){
@@ -52,7 +53,9 @@ class UserRegister extends Component {
     render () {
         const {username, password, confirmPassword} = this.state;
         return (
-        <div className="container well login-container">
+            <div id="jumbotron" className="login-jumbotron">
+            <img className="header-img" src={logo}/>
+        <div className="container well login-form">
             <div className="form-group">
                 <label for="username">Username</label>
                 <input 
@@ -87,6 +90,7 @@ class UserRegister extends Component {
                 <button type="button" className="btn btn-default"  onClick={()=>this.props.onSignupClick(false)}>Cancel</button>
                 <button type="button" className="btn btn-primary"  onClick={()=>this.onSubmit(username, password)}>Submit</button>
             </div>
+        </div>
         </div>
         );
     }

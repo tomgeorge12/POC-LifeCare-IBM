@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import $ from 'jquery';
 import UserRegister from '../userRegister/userResigter';
 import '../../../lifecare-container/lifecare-container.css';
+import logo from '../../../lifecarelogo_Red.png'
 
 class Login extends Component {
   constructor(props){
@@ -60,35 +61,38 @@ class Login extends Component {
          )
      }
       return (
-        <div className="container well login-container">
-            <div className="form-group">
-                <label for="username">Username</label>
-                <input 
-                    type="text"
-                    className="form-control"
-                    value={username}
-                    onChange={(e)=>this.inputOnChange(e, 'username')}
-                    id="username"
-                    placeholder="Username"/>
+        <div id="jumbotron" className="login-jumbotron">
+            <img className="header-img" src={logo}/>
+            <div className="container well login-form">
+                <div className="form-group">
+                    <label for="username">Username</label>
+                    <input 
+                        type="text"
+                        className="form-control"
+                        value={username}
+                        onChange={(e)=>this.inputOnChange(e, 'username')}
+                        id="username"
+                        placeholder="Username"/>
+                </div>
+                <div className="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input
+                        type="password"
+                        className="form-control"
+                        id="inputPassword"
+                        value={password}
+                        onChange={(e)=>this.inputOnChange(e, 'password')}
+                        placeholder="Password"/>
+                </div>
+                <div className="form-group">
+                    <label className="form-check-label"><input type="checkbox"/> Remember me</label>
+                </div>
+                <div className="form-group">
+                    <label className="form-check-label">New User?</label>
+                    <button type="link" className="btn btn-link" onClick={this.onSignupClick}> Sign Up</button>
+                </div>
+                <button type="submit" className="btn btn-primary"  onClick={()=>this.onSignin(username, password)}>Sign in</button>
             </div>
-            <div className="form-group">
-                <label for="inputPassword">Password</label>
-                <input
-                    type="password"
-                    className="form-control"
-                    id="inputPassword"
-                    value={password}
-                    onChange={(e)=>this.inputOnChange(e, 'password')}
-                    placeholder="Password"/>
-            </div>
-            <div className="form-group">
-                <label className="form-check-label"><input type="checkbox"/> Remember me</label>
-            </div>
-            <div className="form-group">
-                <label className="form-check-label">New User?</label>
-                <button type="link" className="btn btn-link" onClick={this.onSignupClick}> Sign Up</button>
-            </div>
-            <button type="submit" className="btn btn-primary"  onClick={()=>this.onSignin(username, password)}>Sign in</button>
         </div>
       );
     }
