@@ -50,6 +50,7 @@ handleRate = (rate) =>{
                 height :'400px',
                 marginBottom: "30px",
                 backgroundColor: "#FFF",
+                ['border-radius']: '25px'
               };
     var TextStyle = {
           color : 'black',
@@ -61,7 +62,7 @@ handleRate = (rate) =>{
     var drawerStyle = {
        marginLeft : "20px"
     };
-    const effect= Effect.FlipHorizontal3D;
+    const effect= Effect.ScaleUp;
     return(
       <div>
         <ThemeProvider theme={theme}>
@@ -90,9 +91,6 @@ handleRate = (rate) =>{
               title={name.substring(0, 35)}
               className="card-title"
             />
-            <Button floating primary mini onClick={this.handleToggle}>
-              <span className="glyphicon glyphicon-star-empty"></span>
-            </Button>
             <CardActions className="card-rating">
               <Rating  readonly
                 initialRate={3.5}
@@ -104,19 +102,21 @@ handleRate = (rate) =>{
               aspectRatio="wide"
               image={url}
             />
+            <Button floating primary mini onClick={this.handleToggle}>
+              <span className="glyphicon glyphicon-star-empty"></span>
+            </Button>
             <div className="card-text">
               <CardText >{this.getAddressFixed(address)}</CardText>
             </div>
             <div>
             <CardActions className="card-action">
-              <button type="button" id='view-more' neutral="false" className="btn btn-link pull-right"  raised primary onClick={()=>this.handleClick(effect)}>View More</button>
+              <button type="button" id='view-more' neutral="false" className="btn btn-link pull-right"  raised primary onClick={()=>this.handleClick(effect)}>Make an Appointment</button>
             </CardActions>
             </div>
           </Card>
           </ThemeProvider>
       </div>
     )
-
   }
 }
 

@@ -12,7 +12,7 @@ class MyCard extends React.Component {
       let {product} = this.props;
      var cardStyle = {
           marginBottom: "30px",
-         backgroundColor: "#FFF",
+         backgroundColor: "#FFF"
      };
 
 

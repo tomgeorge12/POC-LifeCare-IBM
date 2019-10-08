@@ -15,9 +15,9 @@
 .panel-heading h4{
   height: 100px;
 }
-.panel-heading{
+/* .panel-heading{
   background-image: url("aa.jpg");
-}
+} */
 .panel-body{
   /*height: 100px;*/
   background-color: #dfe3e5;

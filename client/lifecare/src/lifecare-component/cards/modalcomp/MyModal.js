@@ -52,7 +52,7 @@ class MyModal extends Component{
              right           : 0,
              bottom          : 0,
              zIndex          : 99999999,
-             overflow        : 'scroll',
+             overflow        : 'none !important',
              perspective     :  1300,
              backgroundColor : 'rgba(0, 0, 0, 0.3)'
            },
@@ -60,14 +60,15 @@ class MyModal extends Component{
            content: {
              position                : 'relative',
              margin                  : '2% auto',
-             height                  : '100%',
+             height                  : '90%',
              width                   : '60%',
              border                  : '1px solid rgba(0, 0, 0, .2)',
-             background              : '#fff',
-             overflow                : 'scroll',
+             background              : 'rgb(245, 247, 246)',
+             overflow                : 'none !important',
              borderRadius            : '4px',
              outline                 : 'none',
              boxShadow               : '0 5px 10px rgba(0, 0, 0, .3)',
+             ['border-radius']         : '25px'
            }
          };
 
@@ -79,13 +80,13 @@ class MyModal extends Component{
           style={style}>
             <div className="main">
               <div className="modal-header">
-                <h2 className="title">{this.props.hosName}
-                  <span className="glyphicon glyphicon-remove pull-right"
-  	                    onClick={ModalManager.close}></span>
+                <h2 className='header-text'>{this.props.hosName}
+                  <button className="btn btn-link glyphicon glyphicon-remove pull-right"
+  	                    onClick={ModalManager.close}></button>
                     </h2><br/>
               </div>
-            <div className="modal-body">
-              <ul className="list-group">
+            <div className="modal-body overflow">
+              <ul className="list-group list-body">
                {this.getDoctorDetails()}
                </ul>
             </div>
@@ -96,7 +97,3 @@ class MyModal extends Component{
 }
 
 export default MyModal;
-
-// <div className="modal-footer">
-//   <button type="button" className="btn btn-primary" onClick={ModalManager.close}>Close</button>
-// </div>

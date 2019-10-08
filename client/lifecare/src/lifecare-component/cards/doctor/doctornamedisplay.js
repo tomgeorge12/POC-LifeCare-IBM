@@ -16,17 +16,20 @@ constructor(props){
     let {doctor}=this.props;
     const effect= Effect.FlipHorizontal3D;
     return(
-      <li className="list-group-item">
+      <li className="list-group-item ">
             <div className="list-item">
               <div className="pull-left">
                 <img id="doc"src={url}></img>
                 </div>
               <h3>{name}</h3>
                 {deptName}<br/>
-                {degree}
-              
-              <div className="pull-right">
-                <button className="btn btn-info pull-right" onClick={() => {this.openModal(effect)}}>Schedule an Appointment </button>
+                <div className="degree-button">
+                  <span className='degree'>
+                    {degree}
+                  </span>
+                  <div className="pull-right">
+                    <button className="btn btn-info pull-right" onClick={() => {this.openModal(effect)}}>Schedule an Appointment </button>
+                  </div>
               </div>
           </div>
       </li>
