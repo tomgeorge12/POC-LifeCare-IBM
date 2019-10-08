@@ -98,3 +98,8 @@ li{
 .page-numbers{
   text-align: center;
 }
+
+.login-container{
+  width: 450px;
+  background-color: #f5fcff6b;
+}

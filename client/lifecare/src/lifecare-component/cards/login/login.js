@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import UserRegister from '../userRegister/userResigter';
+import '../../../lifecare-container/lifecare-container.css';
 
 class Login extends Component {
   constructor(props){
@@ -59,7 +60,7 @@ class Login extends Component {
          )
      }
       return (
-        <div className="container well">
+        <div className="container well login-container">
             <div className="form-group">
                 <label for="username">Username</label>
                 <input 

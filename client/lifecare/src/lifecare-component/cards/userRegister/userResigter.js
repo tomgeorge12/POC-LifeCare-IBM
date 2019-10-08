@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
-// import HospitalMain from '../lifecare-component/cards/hospitalmain/hospitalmain.component.js';
 import $ from 'jquery';
-// import _ from 'lodash';
-// import './lifecare-container.css';
-// import SearchInput, {createFilter} from 'react-search-input';
-// import logo from '../lifecarelogo.png'
-// import Footer from '../lifecare-component/footer/footer.component';
-// import AdminComponent from '../lifecare-component/cards/admin/AdminComponent';
-// import Login from '../lifecare-component/cards/login/login';
-// import { Modal,ModalManager,Effect} from 'react-dynamic-modal';
+import '../../../lifecare-container/lifecare-container.css';
 
 class UserRegister extends Component {
     constructor(props){
@@ -60,7 +52,7 @@ class UserRegister extends Component {
     render () {
         const {username, password, confirmPassword} = this.state;
         return (
-        <div className="container well">
+        <div className="container well login-container">
             <div className="form-group">
                 <label for="username">Username</label>
                 <input 
