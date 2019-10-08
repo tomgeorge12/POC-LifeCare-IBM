@@ -3,10 +3,11 @@ import HospitalMain from '../lifecare-component/cards/hospitalmain/hospitalmain.
 import $ from 'jquery';
 import _ from 'lodash';
 import './lifecare-container.css';
-import SearchInput, {createFilter} from 'react-search-input';
-import logo from '../lifecarelogo.png'
+import {createFilter} from 'react-search-input';
 import Footer from '../lifecare-component/footer/footer.component';
+import Header from '../lifecare-component/header/header.component';
 import AdminComponent from '../lifecare-component/cards/admin/AdminComponent';
+import Login from '../lifecare-component/cards/login/login';
 import { Modal,ModalManager,Effect} from 'react-dynamic-modal';
 
 const KEYS_TO_FILTERS = ['name'];
@@ -20,12 +21,14 @@ class LifeCycle extends Component {
       hospitals:[],
       searchTerm:'',
       currentPage: 1,
-      hospitalsPerPage: 8
+      hospitalsPerPage: 8,
+      login: false
     }
     this.searchUpdated=this.searchUpdated.bind(this);
     this.handleClickPage=this.handleClickPage.bind(this);
     this.addNewHospital=this.addNewHospital.bind(this);
     this.handleAddClick=this.handleAddClick.bind(this);
+    this.onSignin=this.onSignin.bind(this);
     // this.renderMainContent=this.renderMainContent.bind(this);
     // this.display=this.display.bind(this);
     // this.getContent = this.getContent.bind(this);
@@ -62,51 +65,29 @@ class LifeCycle extends Component {
       )
     }
 
-    // renderMainContent(){
-    //   if(filteredHospital.length){
-    //     console.log("inside render::");
-    //     return(
-    //       <div>
-    //         <div id="jumbotron" className="text-center">
-    //           <img id="logo" src={logo}/>
-    //           <SearchInput id="search-input" onChange={this.searchUpdated} />
-    //         </div>
-    //         <div>
-    //           {console.log(renderHospitals)}
-    //         </div>
-    //           <div className="footer">
-    //         <Footer/>
-    //         </div>
-    //       </div>
-    //     );
-    //   }
-    //   else{
-    //     return(
-    //       <div>
-    //         <div id="jumbotron" className="text-center">
-    //           <img id="logo" src={logo}/>
-    //           <SearchInput id="search-input" onChange={this.searchUpdated} />
-    //         </div><br/>
-    //       <div className="alert alert-danger bg-info">
-    //         No Hospitals Found
-    //       </div>
-    //       <div className="footer">
-    //     <Footer/>
-    //     </div>
-    //     </div>
-    //     );
-    //   }
-    // }
+    onSignin(loginSuccess) {
+      if(!loginSuccess) {
+        alert('Login Failed!')
+      }
+      this.setState({login:loginSuccess})
+    }
 
  render () {
-
-    let {hospitals,currentPage,hospitalsPerPage,searchTerm}=this.state;
+    let {hospitals, currentPage, hospitalsPerPage, searchTerm, login}=this.state;
     filteredHospital = hospitals.filter(createFilter(this.state.searchTerm,KEYS_TO_FILTERS));
 
     // for displaying hospitals as pagewise
     const indexOfLastHospital = currentPage * hospitalsPerPage;
     const indexOfFirstHospital = indexOfLastHospital - hospitalsPerPage;
     const currentHospitals = hospitals.slice(indexOfFirstHospital, indexOfLastHospital);
+
+    if(!login) {
+      return(
+        <div className='text-center login-container'> 
+          {/* <div className=''/>          */}
+          <Login onSignin={this.onSignin}/>
+        </div>)
+    } 
     if(searchTerm){
       renderHospitals = filteredHospital.map((hospital, index) => {
         return (
@@ -151,10 +132,7 @@ class LifeCycle extends Component {
       if(filteredHospital.length){
         return(
           <div>
-            <div id="jumbotron" className="text-center">
-              <img id="logo" src={logo}/>
-              <SearchInput id="search-input" onChange={this.searchUpdated} />
-            </div>
+            <Header hideSearch={!login} searchUpdated={this.searchUpdated}/>
             <div className="main-content">
               {renderHospitals}
             </div>
@@ -167,10 +145,7 @@ class LifeCycle extends Component {
       else{
         return(
           <div>
-            <div id="jumbotron" className="text-center">
-              <img id="logo" src={logo}/>
-              <SearchInput id="search-input" onChange={this.searchUpdated} />
-            </div><br/>
+             <Header hideSearch={!login} searchUpdated={this.searchUpdated}/>
           <div className="alert alert-danger bg-info">
             No Hospitals Found
           </div>
@@ -184,10 +159,7 @@ class LifeCycle extends Component {
     else{
       return(
         <div>
-          <div id="jumbotron" className="text-center">
-            <img id="logo" src={logo}/>
-            <SearchInput id="search-input" onChange={this.searchUpdated} />
-          </div>
+           <Header hideSearch={!login} searchUpdated={this.searchUpdated}/>
           <div className="main-content">
             {renderHospitals}
           </div>
@@ -206,53 +178,4 @@ class LifeCycle extends Component {
   }
 }
 
-export default LifeCycle ;
-
-
-// {_.map(filteredHospital,(hospital) => {
-//       return (
-//
-//       <div className='col-md-4 col-sm-4 col-lg-4'>
-//         <HospitalMain {...hospital}/>
-//       </div>
-//     )
-//   })
-// }
-
-
-// <div className="row">
-//   {this.getContent()}
-// </div>
-
-
-// display(){
-//   _.map(filteredHospital,(hospital) => {
-//         return (
-//         <div className='col-md-4 col-sm-6'>
-//           <HospitalMain {...hospital}/>
-//         </div>
-//       )
-//     });
-// }
-// getContent(){
-  // let {hospital}=this.state;
-  // let hospitalComps=_.map(hospital,(info,idx)=>{
-  //   return _.map(info.cardContent.relationItems,(data)=>{
-  //     console.log(data);
-  //     return (
-  //       <div className="col-md-6">
-  //         <HospitalMain {...data}/>
-  //     </div>
-  //   )
-  //   })
-  // });
-  // return hospitalComps;
-  // console.log(filteredHospital);
-  // _.map(filteredHospital,(hospital,idx) => {
-  //   return (
-  //     <div className='col-md-4 col-sm-4 col-lg-4'>
-  //       <HospitalMain {...hospital} key={idx}/>
-  //     </div>
-  //   )
-  // });
-// }
+export default LifeCycle;

@@ -15,9 +15,9 @@
 .panel-heading h4{
   height: 100px;
 }
-.panel-heading{
+/* .panel-heading{
   background-image: url("aa.jpg");
-}
+} */
 .panel-body{
   /*height: 100px;*/
   background-color: #dfe3e5;
@@ -26,18 +26,21 @@ h4{
   text-align: center;
 }
 .card-title{
-  height:200px;
+  height:100px;
 }
 
 .card-text{
-  margin: 10px;
-  height:30px;
+  margin: 0px;
+  height:0px;
 }
 
 .card-action{
-  margin-top: 30px;
+  /* margin-top: 30px; */
   height:100px;
 }
 .card-rating{
   margin-bottom: 10px;
+}
+#view-more:focus {
+  outline: none;
 }

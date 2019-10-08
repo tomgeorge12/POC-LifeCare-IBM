@@ -5,8 +5,15 @@ let fs = require('fs');
 var hospital=require('./hospitalcomponent.json');
 var hospitalDetails=require('./hospitaldetails.json');
 let bodyParser = require('body-parser');
+let find = require('lodash/find');
+let isEmpty = require('lodash/isEmpty');
 let appointment=require('./appointment.json');
 
+const getDecodedString = (value) => {
+  let buff = new Buffer(value, 'base64');
+  let text = buff.toString('ascii');
+  return text;
+}
 app.get('/',function(req,res){
   res.header('Access-Control-Allow-Origin','*');
   res.json(hospital);
@@ -61,9 +68,40 @@ app.post('/createHospitals',function(req,res){
     res.json({success : "created Successfully", status : 200, lookupid:lookupid});
   }
   );
+});
 
+app.post('/login',function(req,res){
+  console.log(JSON.stringify(req.body));
+  let usersCollection = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
+  const username = getDecodedString(req.body.username);
+  const password = getDecodedString(req.body.password);
+  const user = find(usersCollection.users, {'username' : username, 'password': password});  
+  console.log('info', 'Registered user:', user);
+  if(!isEmpty(user)) {
+    res.header('Access-Control-Allow-Origin','*').json({loginSuccess : true, status : 200}).status(200);
+  } else {
+    res.header('Access-Control-Allow-Origin','*').status(400).json({loginSuccess : false, status : 400});
+  }
+});
+
+app.post('/register',function(req,res){
+  console.log(JSON.stringify(req.body));
+  let usersCollection = JSON.parse(fs.readFileSync('./users.json', 'utf8'));
+  const username = req.body.username;
+  const password = getDecodedString(req.body.password);
+  usersCollection.users.push({'username' : username, 'password': password});  
+  console.log('info', 'Registered user:', usersCollection);
+  fs.writeFile ('./users.json',JSON.stringify(usersCollection , null, 2) , function(err) {
+    if (err){
+      console.log("Register User Error | "+err);
+      res.header('Access-Control-Allow-Origin','*').status(400).json({registerSuccess : false, status : 400});      
+    } else {
+      res.header('Access-Control-Allow-Origin','*');
+      res.status(200).json({registerSuccess : true, status : 200});
+    }
+  });
 });
 
 app.listen(8282,function(){
-  console.log('App running successfully');
+  console.log('App running successfully: 8282');
 });

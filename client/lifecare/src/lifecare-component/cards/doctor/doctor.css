@@ -26,6 +26,9 @@
   transition: width 0.4s ease-in-out;
   margin-bottom: 20px;
 }
-/*#doctor-list{
-  margin-bottom: 20px;
-}*/
+#doctor-list{
+  height: 388px;
+}
+.flipcard-content{
+  outline: none;
+}

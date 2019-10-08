@@ -240,11 +240,13 @@ class Appointment extends Component {
 }
 
   getCardBackContent(){
+    let $name= $('#name');
+    let $age= $('#age');
+    let $number=$('#number');
+    let $sex=$('[name="myradio"]');
+    let $date= this.state.date;
+    let $slot= this.state.slot;
     if(this.state.referenceId){
-      let $name= $('#name');
-      let $age= $('#age');
-      let $date= this.state.date;
-      let $slot= this.state.slot;
       let {referenceId} = this.state;
         let order = {
           name: $name.val(),
@@ -253,26 +255,67 @@ class Appointment extends Component {
           slot:$slot
         };
       return(
-        <div className="panel panel-primary" id="panel2">
-          <div className="panel-heading">Your Appointment Details </div>
-          <div className="panel-body">
-            <label>ReferenceId : {referenceId}</label><br/>
-            <label>Name : {order.name}</label><br/>
-            <label>Date : {order.date}</label><br/>
-            <label>Time : {order.slot}</label><br/>
-          </div>
+        <div className="" id="panel2">
+          <h4 className='pull-left'>Appointment Confirmed</h4>
+          <table className="table table-striped">
+              <tbody>
+                <tr>
+                  <td><label >ReferenceId</label></td>
+                  <td><label id="forname">:{referenceId}</label></td>
+                </tr>
+                <tr>
+                  <td><label >Name</label></td>
+                  <td><label id="forage">:{order.name}</label></td>
+                </tr>
+                <tr>
+                  <td><label >Date</label></td>
+                  <td><label id="forsex">:{order.date}</label></td>
+                </tr>
+                <tr>
+                  <td><label >Time</label></td>
+                  <td><label id="fornumber">:{order.slot}</label></td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <button type="button" className="btn btn-default" id="backbtns" onClick={ModalManager.close}>Close</button>
+            </div>
         </div>
       );
     }
     else{
       return(
-        <div className="panel panel-primary" id="panel2">
-          <div className="panel-heading">Your Appointment Details </div>
-          <div className="panel-body">
-            <button className="btn-primary" id="backbtns" onClick={() => this.openModal(effect)}>Cancel</button>
-            <button className="btn-primary" id="backbtns" ref="backButton" onClick={()=>{this.showFront()}}>Edit</button>
-            <button type="submit" className="btn-primary" id="backbtns" onClick={()=> this.onsubmit()}>Submit</button>
-          </div>
+        <div id="panel2">
+            <h4 className='pull-left'>Confirm Appointment Details</h4>
+            <table className="table table-striped">
+              <tbody>
+                <tr>
+                  <td><label >Name</label></td>
+                  <td><label id="forname">:{$name.val()}</label></td>
+                </tr>
+                <tr>
+                  <td><label >Age</label></td>
+                  <td><label id="forage">:{$age.val()}</label></td>
+                </tr>
+                <tr>
+                  <td><label >Sex</label></td>
+                  <td><label id="forsex">:{$sex.val()}</label></td>
+                </tr>
+                <tr>
+                  <td><label >Contact Number</label></td>
+                  <td><label id="fornumber">:{$number.val()}</label></td>
+                </tr>
+                <tr>
+                  <td><label >Appointment time</label></td>
+                  <td><label id="fornumber">:{$date} {$slot}</label></td>
+                </tr>
+              </tbody>
+            </table>
+            <div>
+              <button className="btn btn-default" id="backbtns" onClick={() => this.openModal(effect)}>Cancel</button>
+              <button className="btn btn-warning" id="backbtns" ref="backButton" onClick={()=>{this.showFront()}}>Edit</button>
+              <button type="submit" className="btn btn-primary" id="backbtns" onClick={()=> this.onsubmit()}>Submit</button>
+            </div>
         </div>
       );
     }
@@ -281,78 +324,84 @@ class Appointment extends Component {
   render() {
 
     const style = {
-       overlay: {
-            position        : 'fixed',
-            top             : 0,
-            left            : 0,
-            right           : 0,
-            bottom          : 0,
-            zIndex          : 99999999,
-            overflow        : 'scroll',
-            perspective     :  1300,
-            backgroundColor : 'rgba(0, 0, 0, 0.3)'
-          },
+      overlay: {
+          position        : 'fixed',
+          top             : 0,
+          left            : 0,
+          right           : 0,
+          bottom          : 0,
+          zIndex          : 99999999,
+          overflow        : 'none !important',
+          perspective     :  1300,
+          backgroundColor : 'rgba(0, 0, 0, 0.3)'
+        },
 
-          content: {
-            position                : 'relative',
-            margin                  : '2% auto',
-            height                  : '100%',
-            width                   : '900px',
-            border                  : '1px solid rgba(0, 0, 0, .2)',
-            background              : '#fff',
-            overflow                : 'scroll',
-            borderRadius            : '4px',
-            outline                 : 'none',
-            boxShadow               : '0 5px 10px rgba(0, 0, 0, .3)',
-          }
-   };
-const labelstyle = {color:'red'};
+        content: {
+          position                : 'relative',
+          margin                  : '2% auto',
+          height                  : '90%',
+          width                   : '60%',
+          border                  : '1px solid rgba(0, 0, 0, .2)',
+          background              : 'rgb(245, 247, 246)',
+          overflow                : 'none !important',
+          borderRadius            : '4px',
+          outline                 : 'none',
+          boxShadow               : '0 5px 10px rgba(0, 0, 0, .3)',
+          ['border-radius']         : '25px'
+        }
+     };
+    const labelstyle = {color:'red'};
     return (
       <Modal
         effect={effect}
         onRequestClose={() => true}
         style={style}>
-      <div id="flipId">
-      <FlipCard
-            disabled={true}
-            flipped={this.state.isFlipped}
-            onFlip={this.handleOnFlip()}
-            onKeyDown={this.handleKeyDown}
-          >
-          <div >
-           <div className="panel panel-primary" id="panel1">
-             <div className="panel-heading">Fill in appointment details </div>
-             <div className="panel-body">
-               <div className="form-group">
-                 <label >Name:</label>
-                 <input type="text" id="name" className="form-control" ></input>
-                 <label id="forname" style={labelstyle}></label>
-                 </div>
-                   <label >Age:</label>
-                   <input type="text" id="age" className="form-control" ></input>
-                   <label id="forage" style={labelstyle}></label>
-                   <br/>
-                   <label >Sex:</label>
-                   <label className="radio-inline"><input type="radio" id="male" name ="myradio" value="male"></input>Male</label>
-                     <label className="radio-inline"><input type="radio" id="female" name ="myradio" value="female"></input>Female</label><br/>
-                   <label id="forsex" style={labelstyle}></label>
-                   <br/>
-                   <br/>
-                     <label >Contact Number:</label>
-                     <input type="text" id="number" placeholder="Enter your mobile number" className="form-control" ></input>
-                     <label id="fornumber" style={labelstyle}></label>
-                     <br/>
-                  <label >Choose appointment time:</label>
-                  <ul className="list-group">
-                  {this.bookDateSlot()}
-                  </ul>
-                  <button  className="btn btn-primary center-block" onClick={()=>{this.validateForm()}}>Next</button>
-              </div>
-             </div>
+          <div className='main'>
+            <div className="modal-header">
+                <h2 className='header-text'>{this.props.hosName}
+                  <button className="btn btn-link glyphicon glyphicon-remove pull-right"
+  	                    onClick={ModalManager.close}>
+                  </button>
+                </h2>
             </div>
-            {this.getCardBackContent()}
-          </FlipCard>
-        </div>
+          {!this.state.isFlipped && <div className="" id="panel1">
+            <h4 className='pull-left'>Appointment Form</h4>
+            <div className="">
+              <div className="form-group margin-bottom-none">
+                <label >Name:</label>
+                <input type="text" id="name" className="form-control" ></input>
+                <label id="forname" style={labelstyle}></label>
+              </div>
+              <div className="form-group margin-bottom-none">
+                <label >Age:</label>
+                <input type="text" id="age" className="form-control" ></input>
+                <label id="forage" style={labelstyle}></label>
+              </div>
+              <div className="form-group margin-bottom-none">
+                <label >Sex:</label>
+                <label className="radio-inline"><input type="radio" id="male" name ="myradio" value="male"></input>Male</label>
+                <label className="radio-inline"><input type="radio" id="female" name ="myradio" value="female"></input>Female</label>
+                <label id="forsex" style={labelstyle}></label>
+              </div>
+              <div className="form-group margin-bottom-none">
+                <label >Contact Number:</label>
+                <input type="text" id="number" placeholder="Enter your mobile number" className="form-control" ></input>
+                <label id="fornumber" style={labelstyle}></label>
+              </div>  
+              <div className="form-group margin-bottom-none">
+                <label >Choose appointment time:</label>
+                <ul className="list-group">
+                  {this.bookDateSlot()}
+                </ul>
+              </div>
+              <div className="form-group">  
+                <button  className="btn btn-default" onClick={()=>{this.openModal(effect)}}>Cancel</button>                 
+                <button  className="btn btn-primary" onClick={()=>{this.validateForm()}}>Next</button>
+              </div>
+            </div>
+          </div>}
+            {this.state.isFlipped && this.getCardBackContent()}            
+          </div>
       </Modal>
     );
   }

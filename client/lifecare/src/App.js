@@ -7,9 +7,7 @@ class App extends Component{
 
    render(){
       return (
-        <div>
-          <LifeCycle/>
-        </div>
+        <LifeCycle/>
       );
    }
 }

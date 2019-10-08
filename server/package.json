@@ -6,7 +6,8 @@
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "lodash": "^4.17.15"
   },
   "devDependencies": {},
   "scripts": {

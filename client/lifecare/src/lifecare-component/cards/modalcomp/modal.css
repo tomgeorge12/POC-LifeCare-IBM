@@ -1,24 +1,25 @@
 #searchbar{
-    border: 2px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-    background-color: white;
-    /*background-image: url('../../public/searchicon.png');*/
-    background-position: 3px 5px;
-    background-repeat: no-repeat;
-    padding: 12px 20px 12px 40px;
-    }
-#flipId{
-  align-content: center;
-  height: '100%';
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  font-size: 16px;
+  background-color: white;
+  /*background-image: url('../../public/searchicon.png');*/
+  background-position: 3px 5px;
+  background-repeat: no-repeat;
+  padding: 12px 20px 12px 40px;
+  outline: none;
+}
+#flipcard-content{
+  padding-left: 20px;
 }
 #panel1{
-  margin-left: 80px;
-  margin-top: 50px;
-  margin-right: 120px;
+  margin-left: 48px;
+  margin-right: 131px;
   margin-bottom: 20px;
-  height:1000px;
-  width: 700px;
+  height: 520px;
+  width: 856px;
+  overflow-y: auto;
+  display: grid;
 }
 
 #panel2{
@@ -28,6 +29,7 @@
   margin-bottom: 20px;
   height:400px;
   width: 600px;
+  display: grid;
 }
 #buttonlist{
   display: inline-block;
@@ -46,12 +48,29 @@
 #backbtns{
   box-sizing: content-box;
   text-align: center;
-  margin-left: 40px;
-  margin-top: 40px;
+  margin-left: 10px;
 }
 #main{
   background-color: white;
 }
-.title{
-  margin-top: 30px;
+.list-body {
+  width: 860px;
+  padding-left: 27px;
+}
+.overflow {
+  overflow-y: auto;
+}
+.header-text {
+  border-radius: 25px;
+  background: #71922f2e;
+  padding: 20px;
+}
+.modal-header {
+  border-bottom: none !important;
+  padding-bottom: 0px !important;
+  width: 934px;
+  position: sticky;
+}
+.margin-bottom-none{
+  margin-bottom: 0px !important;
 }
