@@ -42,7 +42,7 @@ app.post('/hospitals/createappointment',function(req,res){
   let Tem = JSON.parse(appointment_data);
   appointment_object.doctor.patient.push(Tem.doctor.patient[0]);
   fs.writeFile ('./data/appointment.json',JSON.stringify(appointment_object , null, 2) , function(err) {
-    console.log("callback::running");
+    // console.log("callback::running");
     if (err){
       console.log("Error is::"+err+"...................");
     }
@@ -112,5 +112,5 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 app.listen(PORT,function(){
-  console.log('App running successfully: ', PORT);
+  console.log('App running successfully on ', PORT);
 });
