@@ -1,11 +1,12 @@
 var express = require('express');
-//var path = require('path');
+var path = require('path');
 var app  = express();
 let fs = require('fs');
-var hospital=require('./hospitalcomponent.json');
-var hospitalDetails=require('./hospitaldetails.json');
+var hospital=require('./data/hospitalcomponent.json');
+var hospitalDetails=require('./data/hospitaldetails.json');
 let bodyParser = require('body-parser');
-let appointment=require('./appointment.json');
+let appointment=require('./data/appointment.json');
+const PORT = process.env.PORT || 8282; 
 
 app.get('/',function(req,res){
   res.header('Access-Control-Allow-Origin','*');
@@ -63,7 +64,13 @@ app.post('/createHospitals',function(req,res){
   );
 
 });
+if(process.env.NODE_ENV === 'production'){
+  app.use(express.static(path.join(__dirname, "../client/lifecare/build")));
+  app.get("", (req, res)=>{
+    res.sendFile(path.resolve(path.join(__dirname, "../client/lifecare/build/index.html")));
+  });
+}
 
-app.listen(8282,function(){
-  console.log('App running successfully');
+app.listen(PORT,function(){
+  console.log('App running successfully: ', PORT);
 });
