@@ -2,7 +2,7 @@ var express = require('express');
 var path = require('path');
 var app  = express();
 let fs = require('fs');
-var hospital=require('./mock/Hospitalcomponent.json');
+var hospital=require('./mock/hospitalcomponent.json');
 var hospitalDetails=require('./mock/hospitaldetails.json');
 let bodyParser = require('body-parser');
 let find = require('lodash/find');
@@ -55,12 +55,12 @@ app.post('/hospitals/createappointment',function(req,res){
 
 app.post('/hospitals/createHospitals',function(req,res){
   var lookupid = getRandomInt();
-  let create_object = JSON.parse(fs.readFileSync('./mock/HospitalComponent.json', 'utf8'));
+  let create_object = JSON.parse(fs.readFileSync('./mock/hospitalcomponent.json', 'utf8'));
   let create_data = '{"cardContent":{"relationItems": [' +
       '{ "lookupid":" ' + lookupid  + ' " ,"name":" '+ req.body.name +' ","address":" '+ req.body.address +' " ,"aboutUs":" '+ req.body.aboutUs +' " , "contactUs":" '+ req.body.contactUs +'  " }]}}';
   let Tem = JSON.parse(create_data);
   create_object.cardContent.relationItems.push(Tem.cardContent.relationItems[0]);
-  fs.writeFile ('./mock/HospitalComponent.json',JSON.stringify(create_object , null, 2) , function(err) {
+  fs.writeFile ('./mock/hospitalcomponent.json',JSON.stringify(create_object , null, 2) , function(err) {
     console.log("callback:: create running");
     if (err){
       console.log("Error is::"+err+"...................");
