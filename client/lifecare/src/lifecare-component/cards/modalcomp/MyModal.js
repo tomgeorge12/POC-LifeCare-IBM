@@ -17,7 +17,7 @@ class MyModal extends Component{
 
   componentDidMount(){
     let {doctors} = this.state;
-    $.getJSON('http://localhost:8282/gethospitaldetail',(data)=>{
+    $.getJSON('/hospitals/gethospitaldetail',(data)=>{
       // console.log(data);
       let arr=Object.keys(data).map((k)=>data[k]);
         this.setState({doctors:data});

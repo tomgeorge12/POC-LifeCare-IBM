@@ -7,11 +7,17 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "fs": "0.0.1-security",
-    "lodash": "^4.17.15"
+    "lodash": "^4.17.15",
+    "nodemon": "^1.19.4",
+    "path": "^0.12.7"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "client": "npm start --prefix lifecare",
+    "start": "nodemon lifecareserver.js",
+    "dev": "concurrently \"npm start\" \"npm run client",
+    "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix lifecare && npm run build --prefix lifecare"
   },
   "keywords": [],
   "author": "",

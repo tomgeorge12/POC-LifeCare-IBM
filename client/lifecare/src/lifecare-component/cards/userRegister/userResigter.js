@@ -30,7 +30,7 @@ class UserRegister extends Component {
                 type: 'POST',
                 data:login,
                 dataType:'json',
-                url: 'http://localhost:8282/register',
+                url: '/users/register',
                     success: (data)=> {
                         this.props.onSignupClick(!data.registerSuccess);
                     },

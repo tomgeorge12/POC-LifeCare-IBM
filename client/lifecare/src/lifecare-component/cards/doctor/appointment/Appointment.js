@@ -30,7 +30,7 @@ class Appointment extends Component {
   getBookingDetails(userId){
     $.ajax({
         type: "GET",
-        url: "http://localhost:8080/getpatientdetail",
+        url: "/hospitals/getpatientdetail",
         dataType:'json',
         success: function (patientdata) {
           _.map(patientdata.doctor.patient,patient=>{
@@ -64,7 +64,7 @@ class Appointment extends Component {
        type: 'POST',
        data:order,
        dataType:'json',
-       url: 'http://localhost:8282/create',
+       url: '/hospitals/createappintment',
           success: (data)=> {
             referenceId=data.user_id;
             alert("sucessful:"+referenceId);

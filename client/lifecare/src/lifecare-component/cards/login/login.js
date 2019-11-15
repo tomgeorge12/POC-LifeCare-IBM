@@ -31,7 +31,7 @@ class Login extends Component {
         type: 'POST',
         data:login,
         dataType:'json',
-        url: 'http://localhost:8282/login',
+        url: '/users/login',
            success: (data)=> {
              this.props.onSignin(data.loginSuccess);
            },
