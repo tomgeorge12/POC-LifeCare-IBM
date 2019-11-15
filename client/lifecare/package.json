@@ -7,6 +7,8 @@
     "font-awesome": "^4.7.0",
     "jquery": "^3.2.1",
     "moment": "^2.18.1",
+    "nodemon": "^1.19.4",
+    "path": "^0.12.7",
     "react": "^15.5.4",
     "react-dom": "^15.5.4",
     "react-dynamic-modal": "^1.1.1",
@@ -20,6 +22,7 @@
   "devDependencies": {
     "react-scripts": "0.9.5"
   },
+  "proxy": "http://localhost:8282",
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",

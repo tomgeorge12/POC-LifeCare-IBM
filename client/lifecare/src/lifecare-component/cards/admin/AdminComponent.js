@@ -22,7 +22,7 @@ class AdminComponent extends Component {
         data:order,
         dataType:'json',
 
-        url: 'http://localhost:8282/createHospitals',
+        url: '/hospitals/createHospitals',
            success: (data)=> {
              alert("sucessful");
             //  console.log(data);

@@ -37,14 +37,20 @@ handleRate = (rate) =>{
      ModalManager.open(<MyModal effect={effect} hosName={this.props.name} id={this.props.lookupid}/>);
   }
 
+  getAddressFixed(text) {
+    if(text.length > 50) return <div>{text.substring(0, 50)}<button type="button" className="btn btn-link">...</button></div>;
+    return text;
+  }
+
   render () {
     let {name,address,aboutUs,url}=this.props;
 
     var cardStyle = {
                 color : 'black',
-                height :'600px',
+                height :'400px',
                 marginBottom: "30px",
                 backgroundColor: "#FFF",
+                ['border-radius']: '25px'
               };
     var TextStyle = {
           color : 'black',
@@ -56,120 +62,62 @@ handleRate = (rate) =>{
     var drawerStyle = {
        marginLeft : "20px"
     };
-    const effect= Effect.FlipHorizontal3D;
+    const effect= Effect.ScaleUp;
     return(
       <div>
-
         <ThemeProvider theme={theme}>
-           <Drawer active={this.state.active} onOverlayClick={this.handleToggle} type="right"  >
-           <AppBar title='Feedback'>
-
-           </AppBar>
-           <div  style={drawerStyle} >
-             <h4>Your Feedback helps us improve Lifecare</h4>
-             <ThemeProvider  theme={theme}>
-
-            <Input type='text' label='Enter Reference ID' />
-
-            </ThemeProvider>
-
-             <Rating
-              fractions={2}  onClick={(rate)=>{this.handleRate(rate)}}
-                      empty={<img src={img_empty} alt="hi" height="25" width="25" className="icon" />}
-                      full={<img src={img_full} alt="hi" height="25" width="25" className="icon" />} />
-                      <br/><br/><br/>
-                      <ThemeProvider  theme={theme}>
-                      <Button label='Submit' raised accent primary  />
-                      </ThemeProvider>
-                 </div>
-           </Drawer>
-         </ThemeProvider>
-
-        <ThemeProvider theme={theme}>
-              <Card style={cardStyle}>
-              <CardTitle
-                title={name}
-                className="card-title"
-               />
-             <CardActions className="card-rating">
-               <Rating  readonly
-                   initialRate={3.5}
-                   fractions={2}
-                    empty={<img src={img_empty} height="25" width="25" className="icon" />}
-                    full={<img src={img_full} height="25" width="25" className="icon" />} />
-             </CardActions>
-              <CardMedia
-                aspectRatio="wide"
-                image={url}
-              />
-              <Button   floating primary mini onClick={this.handleToggle}>
-                   <  span className="glyphicon glyphicon-star-empty"></span>
-               </Button>
-            <div className="card-text">
-              <CardText >{address}</CardText>
+          <Drawer active={this.state.active} onOverlayClick={this.handleToggle} type="right"  >
+            <AppBar title='Feedback' />
+            <div  style={drawerStyle} >
+              <h4>Your Feedback helps us improve Lifecare</h4>
+              <ThemeProvider  theme={theme}>
+                <Input type='text' label='Enter Reference ID' />
+              </ThemeProvider>
+              <Rating
+                fractions={2} 
+                onClick={(rate)=>{this.handleRate(rate)}}
+                empty={<img src={img_empty} alt="hi" height="25" width="25" className="icon" />}
+                full={<img src={img_full} alt="hi" height="25" width="25" className="icon" />} />
+              <br/><br/><br/>
+              <ThemeProvider  theme={theme}>
+                <Button label='Submit' raised accent primary  />
+              </ThemeProvider>
             </div>
-            <CardActions className="card-action">
-               <Button label="View More"  neutral="false" className="pull-right"  raised primary onClick={()=>this.handleClick(effect)}/>
+          </Drawer>
+        </ThemeProvider>
+        <ThemeProvider theme={theme}>
+          <Card style={cardStyle}>
+            <CardTitle
+              title={name.substring(0, 35)}
+              className="card-title"
+            />
+            <CardActions className="card-rating">
+              <Rating  readonly
+                initialRate={3.5}
+                fractions={2}
+                empty={<img src={img_empty} height="25" width="25" className="icon" />}
+                full={<img src={img_full} height="25" width="25" className="icon" />} />
             </CardActions>
-            </Card>
+            <CardMedia
+              aspectRatio="wide"
+              image={url}
+            />
+            <Button floating primary mini onClick={this.handleToggle}>
+              <span className="glyphicon glyphicon-star-empty"></span>
+            </Button>
+            <div className="card-text">
+              <CardText >{this.getAddressFixed(address)}</CardText>
+            </div>
+            <div>
+            <CardActions className="card-action">
+              <button type="button" id='view-more' neutral="false" className="btn btn-link pull-right"  raised primary onClick={()=>this.handleClick(effect)}>Make an Appointment</button>
+            </CardActions>
+            </div>
+          </Card>
           </ThemeProvider>
       </div>
     )
-
   }
 }
 
 export default HospitalMain;
-
-// <CardText style={TextStyle} >{aboutUs}</CardText>
-
-// <div className="panel panel-default">
-//   <div className="panel-heading">
-//       <h4>{name}</h4></div>
-//
-//       <div className="panel-body">
-//         {address}
-//       // <br/>
-//       <button className="btn btn-primary pull-right" role="button" type="button"
-//         onClick={()=>this.handleClick(effect)}>view details</button>
-//       </div>
-//   </div>
-
-// <Card level={2} >
-//   {name}
-//   {address}
-//   <button>
-//       clickme
-//   </button>
-// </Card>
-// <div>
-//   {name}
-// </div>
-
-// <div className="card">
-//    <img className="card-img-top" src="..." alt="Card image cap"/>
-//      <div className="card-header">
-//         Featured
-//     </div>
-//   <div className="card-block">
-//       <h4>{name}</h4></div>
-//
-//       <div className="card-text">
-//         {address}
-//
-//       <button className="btn btn-primary pull-right" role="button" type="button"
-//         onClick={()=>this.handleClick(effect)}>view details</button>
-//       </div>
-//   </div>
-
-      // <div className="panel panel-default">
-      //   <div className="panel-heading">
-      //       <h4>{name}</h4></div>
-      //       <div className="panel-body">
-      //         {address}<br/>
-      //         {aboutUs}
-      //       <br/>
-      //       <button className="btn btn-primary pull-right" role="button" type="button"
-      //         onClick={()=>this.handleClick(effect)}>view details</button>
-      //       </div>
-      //   </div>
