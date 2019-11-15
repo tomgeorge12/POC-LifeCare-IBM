@@ -11,8 +11,8 @@ import Login from '../lifecare-component/cards/login/login';
 import { Modal,ModalManager,Effect} from 'react-dynamic-modal';
 
 const KEYS_TO_FILTERS = ['name'];
-const filteredHospital=null;
-const renderHospitals = null;
+let filteredHospital=null;
+let renderHospitals = null;
 
 class LifeCycle extends Component {
   constructor(props){
