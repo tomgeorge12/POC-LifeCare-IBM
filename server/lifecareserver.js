@@ -103,13 +103,13 @@ app.post('/users/register',function(req,res){
   });
 });
 
-if(process.env.NODE_ENV === 'production'){
+// if(process.env.NODE_ENV === 'production'){
   //to serve the static files
   app.use(express.static(path.join(__dirname, "../client/lifecare/build")));
   app.get("/load", (req,res)=>{
     res.sendFile(path.resolve(path.join(__dirname, "../client/lifecare/build/index.html")))
   });
-}
+// }
 
 app.listen(PORT,function(){
   console.log('App running successfully: ', PORT);
