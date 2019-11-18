@@ -2,6 +2,7 @@ var express = require('express');
 var path = require('path');
 var app  = express();
 let fs = require('fs');
+const MongoClient = require('mongodb').MongoClient;
 var hospital=require('./mock/hospitalcomponent.json');
 var hospitalDetails=require('./mock/hospitaldetails.json');
 let bodyParser = require('body-parser');
@@ -9,6 +10,8 @@ let find = require('lodash/find');
 let isEmpty = require('lodash/isEmpty');
 let appointment=require('./mock/appointment.json');
 const PORT = process.env.PORT || 8282;
+
+const uri = "mongodb+srv://tomgeorge12:M@d@th1l@lifecare-c3q3e.mongodb.net/test?retryWrites=true&w=majority"
 
 const getDecodedString = (value) => {
   let buff = new Buffer(value, 'base64');
@@ -73,16 +76,27 @@ app.post('/hospitals/createHospitals',function(req,res){
 
 app.post('/users/login',function(req,res){
   console.log(JSON.stringify(req.body));
-  let usersCollection = JSON.parse(fs.readFileSync('./mock/users.json', 'utf8'));
   const username = getDecodedString(req.body.username);
   const password = getDecodedString(req.body.password);
-  const user = find(usersCollection.users, {'username' : username, 'password': password});  
-  console.log('info', 'Registered user:', user);
-  if(!isEmpty(user)) {
-    res.header('Access-Control-Allow-Origin','*').json({loginSuccess : true, status : 200}).status(200);
-  } else {
-    res.header('Access-Control-Allow-Origin','*').status(400).json({loginSuccess : false, status : 400});
-  }
+  MongoClient.connect(uri, function(err, client) {
+    if(err) {
+         console.log('Error occurred while connecting to MongoDB Atlas...\n',err);
+    }
+    console.log('Connected...');
+    const usersCollection = client.db("lifecare").collection("users");
+    // perform actions on the collection object
+    usersCollection.find((err, items)=>{
+      console.log('info', 'Registered user:', items);      
+      const user = find(items, {'username' : username, 'password': password});
+    })
+    if(!isEmpty(user)) {
+      res.header('Access-Control-Allow-Origin','*').json({loginSuccess : true, status : 200}).status(200);
+    } else {
+      res.header('Access-Control-Allow-Origin','*').status(400).json({loginSuccess : false, status : 400});
+    }    
+    client.close();
+  });
+  // let usersCollection = JSON.parse(fs.readFileSync('./mock/users.json', 'utf8'));
 });
 
 app.post('/users/register',function(req,res){
@@ -103,13 +117,13 @@ app.post('/users/register',function(req,res){
   });
 });
 
-if(process.env.NODE_ENV === 'production'){
+// if(process.env.NODE_ENV === 'production'){
   //to serve the static files
   app.use(express.static(path.join(__dirname, "/client/lifecare/build")));
   app.get("*", (req,res)=>{
     res.sendFile(path.resolve(path.join(__dirname, "/client/lifecare/build/index.html")))
   });
-}
+// }
 
 app.listen(PORT,function(){
   console.log('App running successfully on ', PORT);
