@@ -21,7 +21,11 @@ class Appointment extends Component {
         ],
         date:null,
         slot:null,
-        referenceId:null
+        referenceId:null,
+        name: '',
+        age: '',
+        sex: '',
+        number: ''
     }
     this.getBookingDetails=this.getBookingDetails.bind(this);
     this.getCardBackContent=this.getCardBackContent.bind(this);
@@ -44,29 +48,23 @@ class Appointment extends Component {
   }
 
   onsubmit() {
-    // console.log("lookupid::"+this.props.id);
-   let $name= $('#name');
-   let $age= $('#age');
-   let $number=$('#number');
-   let $sex=$('[name="myradio"]');
-   let $date= this.state.date;
-   let $slot= this.state.slot;
-   var {referenceId} = this.state;
+   var {referenceId, name, age, number, sex, date, slot} = this.state;
      let order = {
-       name: $name.val(),
-       age: $age.val(),
-       sex:$sex.val(),
-       number: $number.val(),
-       date:$date,
-       slot:$slot
+       name: name,
+       age: age,
+       sex: sex,
+       number: number,
+       date:date,
+       slot:slot,
+       doctor: this.props.name
      };
      $.ajax({
        type: 'POST',
        data:order,
        dataType:'json',
-       url: '/hospitals/createappintment',
+       url: '/hospitals/createappointment',
           success: (data)=> {
-            referenceId=data.user_id;
+            referenceId=data.appointment.userId;
             alert("sucessful:"+referenceId);
             this.setState({referenceId});
           },
@@ -240,20 +238,9 @@ class Appointment extends Component {
 }
 
   getCardBackContent(){
-    let $name= $('#name');
-    let $age= $('#age');
-    let $number=$('#number');
-    let $sex=$('[name="myradio"]');
-    let $date= this.state.date;
-    let $slot= this.state.slot;
+    var {referenceId, name, age, number, sex, date, slot} = this.state;
     if(this.state.referenceId){
       let {referenceId} = this.state;
-        let order = {
-          name: $name.val(),
-          age: $age.val(),
-          date:$date,
-          slot:$slot
-        };
       return(
         <div className="" id="panel2">
           <h4 className='pull-left'>Appointment Confirmed</h4>
@@ -265,15 +252,15 @@ class Appointment extends Component {
                 </tr>
                 <tr>
                   <td><label >Name</label></td>
-                  <td><label id="forage">:{order.name}</label></td>
+                  <td><label id="forage">:{name}</label></td>
                 </tr>
                 <tr>
                   <td><label >Date</label></td>
-                  <td><label id="forsex">:{order.date}</label></td>
+                  <td><label id="forsex">:{date}</label></td>
                 </tr>
                 <tr>
                   <td><label >Time</label></td>
-                  <td><label id="fornumber">:{order.slot}</label></td>
+                  <td><label id="fornumber">:{slot}</label></td>
                 </tr>
               </tbody>
             </table>
@@ -291,23 +278,23 @@ class Appointment extends Component {
               <tbody>
                 <tr>
                   <td><label >Name</label></td>
-                  <td><label id="forname">:{$name.val()}</label></td>
+                  <td><label id="forname">:{name}</label></td>
                 </tr>
                 <tr>
                   <td><label >Age</label></td>
-                  <td><label id="forage">:{$age.val()}</label></td>
+                  <td><label id="forage">:{age}</label></td>
                 </tr>
                 <tr>
                   <td><label >Sex</label></td>
-                  <td><label id="forsex">:{$sex.val()}</label></td>
+                  <td><label id="forsex">:{sex}</label></td>
                 </tr>
                 <tr>
                   <td><label >Contact Number</label></td>
-                  <td><label id="fornumber">:{$number.val()}</label></td>
+                  <td><label id="fornumber">:{number}</label></td>
                 </tr>
                 <tr>
                   <td><label >Appointment time</label></td>
-                  <td><label id="fornumber">:{$date} {$slot}</label></td>
+                  <td><label id="fornumber">:{date} {slot}</label></td>
                 </tr>
               </tbody>
             </table>
@@ -369,23 +356,23 @@ class Appointment extends Component {
             <div className="">
               <div className="form-group margin-bottom-none">
                 <label >Name:</label>
-                <input type="text" id="name" className="form-control" ></input>
+                <input type="text" id="name" className="form-control" value={this.state.name} onChange={(e)=>{if(e) this.setState({name: e.target.value})}}></input>
                 <label id="forname" style={labelstyle}></label>
               </div>
               <div className="form-group margin-bottom-none">
                 <label >Age:</label>
-                <input type="text" id="age" className="form-control" ></input>
+                <input type="text" id="age" className="form-control" value={this.state.age} onChange={(e)=>{if(e) this.setState({age: e.target.value})}}></input>
                 <label id="forage" style={labelstyle}></label>
               </div>
               <div className="form-group margin-bottom-none">
                 <label >Sex:</label>
-                <label className="radio-inline"><input type="radio" id="male" name ="myradio" value="male"></input>Male</label>
-                <label className="radio-inline"><input type="radio" id="female" name ="myradio" value="female"></input>Female</label>
+                <label className="radio-inline"><input type="radio" onChange={(e)=>{if(e) this.setState({sex: e.target.value})}} id="male" name ="myradio" value="male"></input>Male</label>
+                <label className="radio-inline"><input type="radio" onChange={(e)=>{if(e) this.setState({sex: e.target.value})}} id="female" name ="myradio" value="female"></input>Female</label>
                 <label id="forsex" style={labelstyle}></label>
               </div>
               <div className="form-group margin-bottom-none">
                 <label >Contact Number:</label>
-                <input type="text" id="number" placeholder="Enter your mobile number" className="form-control" ></input>
+                <input type="text" id="number" value={this.state.number} onChange={(e)=>{if(e) this.setState({number: e.target.value})}} placeholder="Enter your mobile number" className="form-control" ></input>
                 <label id="fornumber" style={labelstyle}></label>
               </div>  
               <div className="form-group margin-bottom-none">
