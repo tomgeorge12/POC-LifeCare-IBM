@@ -38,7 +38,7 @@ class LifeCycle extends Component {
       let {hospitals} = this.state;
       $.getJSON('/hospitals',(data)=>{
         let arr=Object.keys(data).map((k)=>data[k]);
-          this.setState({hospitals:data.cardContent.relationItems});
+          this.setState({hospitals:data});
       });
     }
 
