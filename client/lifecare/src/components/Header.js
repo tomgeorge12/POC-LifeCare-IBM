@@ -1,13 +1,13 @@
 import React, { Component } from 'react'
-import logo from '../lifecarelogo_Red';
+import logo from '../lifecarelogo_Red.png';
 
 class Container extends Component {
   render () {
     return(
-        <div>
-          <img className="" src={logo}/>
-          <button>Signin</button>
-          <button>SignUp</button>
+        <div className="header-main">
+          <img className="header-logo" src={logo}/>
+          <button className="header-signin">Signin</button>
+          <button className="header-signup">SignUp</button>
         </div>
     )
   }
