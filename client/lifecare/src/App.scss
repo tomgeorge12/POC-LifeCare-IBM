@@ -6,6 +6,9 @@
 .container{
   background-color:#0e3238;
 }
+.sticky{
+  z-index: 1;
+}
 .header-main{
   margin-left: 12%;
   margin-right: 12%;
@@ -33,15 +36,27 @@
   padding-right: 20px;
   /* color: white; */
 }
-.body{
-  margin-top: 163px;
+.body-header-main{
+  border-bottom: 1px solid;
+  border-bottom-color: #04144236;
+  margin-bottom: 31px;
+  padding-bottom: 25px;
+}
+.hospital-area{
+  // padding-left: 31px;
+  border-bottom: 1px solid;
+  border-bottom-color: #04144236;
+  margin-bottom: 23px;
+  padding-bottom: 27px;
 }
 .search-card{
-  width: 70%;
+  width: 100%;
   height: 250px;
   padding: 21px;
-  background-color: #48020205;
-  margin: 20px;
+  background-color: #a79c1bb8;
+  // margin: 20px;
+  background-image: url("./healthcare-banner.jpg");
+  background-position-x: center;
 }
 .search-input{
   width: 60%;
@@ -50,6 +65,8 @@
   padding: 11px;
   display: block;
   margin: 50px auto 5px auto;
+  border: none;
+  outline: none
 }
 .body-content{
   display: block;
@@ -57,12 +74,17 @@
 .search-button-par{
   text-align: center
 }
+.search-section{
+  margin-left: 26%;
+}
 .search-button{
   min-height: 42px;
   min-width: 128px;
   border: none;
   background-color: #7b5151bf;
   color: white;
+  border: none;
+  outline: none
 }
 .search-options{
   width:35%;
@@ -70,6 +92,8 @@
   margin: auto 11px 11px auto;
   min-height: 42px;
   padding: 9px;
+  border: none;
+  outline: none
 }
 .navbar-item{
   list-style-type: none;
@@ -133,31 +157,79 @@ li {
   background-color:#55555521;
   color:black
 }
-.tbd{
+.body-header-area{
   width: 25%;
   height: 250px;
-  padding: 86px;
-  background-color: #1175300d;
-  margin: 20px;
+  padding-left: 1%;
+  padding-top: 3%;
+  margin-left: 20px;
+  position: absolute;
+  h1{
+    font-size: 43px;
+    margin-bottom: 0px;
+    font-family: cursive;
+    text-align: center;
+    color: #ffffff;
+  }
+  span{
+    margin-left: 9px;
+    color: #ffffff;
+    opacity: 90%;
+    font-family: monospace;
+    font-size: 13px;
+    text-align: center;
+    display: block;
+    
+  }
+}
+.body-header{
+  display: block;
+  position: absolute;
+  font-size: 68px;
+}
+.body-subheader{
+  margin-top: 81px;
+  margin-left: 12px;
+  position: absolute;
 }
 .hospital-display-area{
   display: block;
-  width: 86%
+  width: 86%;
+  padding-left: 18%;
 }
 .hospital-card-image{
   width: 100%;
   height: 225px;
   max-width: 345px;
-  min-width: 325px;
-  padding: 15px;
+  // min-width: 325px;
+  // padding: 15px;
+}
+.hospital-card-list{
+  list-style-type: none;
+  position: relative;
+  display: flex;
+  padding: 0px;
+  // background-color: #e7f5e9;
+  li{
+    width: 50%;
+    display: inline; 
+    background-color: #aeb6b075;    
+  }
+  li:hover{
+    background-color: #888a80b2;
+    cursor: pointer;
+  }
+  .active{
+    background:none !important;
+  }
 }
 .hospital-card{
   width: 86%;
   margin: 16px;
-  padding: 11px;
-  background-color: #f3f8f5;
-  min-width: 359px;
-  min-height: 360px;
+  // padding: 11px;
+  background-color: #0b7b2314;
+  max-width: 290px;
+  min-height: 390px;
   p{
     height: 33px;
     padding-left: 15px;
@@ -170,13 +242,42 @@ li {
   button{
     float: right;
     border: none;
-    margin-right: 17px;
-    padding: 10px;
+    margin-right: 10px;
+    padding: 3px;
     outline: none;
+    min-width: 180px;
+    color: #596b60;
+    background: none;
+    font-weight: 700;
+  }
+  button:hover {
+    color: #fafafa;
+    font-weight: 500;
+    background-color: #596b60;
   }
 }
-
-@media (min-width: 1200px) {
+// .hospital-card-detail-area{
+//   background-color: #596b60;
+// }
+.hospital-head{
+  margin-left: 16px;
+  span{
+    font-weight: 700;
+    font-size: 18px;
+  }
+  a{
+    margin: 6px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+  }
+}
+// @media (min-width: 1200px) {
+//   .body-content{
+//     display: flex;
+//   }
+// }
+@media (min-width: 1368px) {
   .navbar-item{
     display: inline;
   }
@@ -185,19 +286,49 @@ li {
     padding-left: 2px;
     padding-bottom: 0px;
   }
-  .body-content{
-    display: flex;
-  }
+  // .body-content{
+  //   display: flex;
+  // }
   .sticky {
     position: fixed;
     top: 0;
     width: 100%;
     background-color: white;
+    z-index: 1;
+  }
+  .body-header-area{
+    padding-left: 2%;
+    margin: 20px;
+    h1{
+      text-align: left;
+      font-size: 67px;
+    }
+    span{
+      text-align: left;
+      display: inline;
+    }
+    .body{
+      margin-top: 163px;
+    }
+  }
+}
+@media (min-width: 1013px) {
+  .body-content{
+    display: flex;
+  }
+  .hospital-area{
+    padding-left: 4%;
+  }
+  .hospital-display-area{
+    padding-left: 0%;
   }
 }
 @media (min-width: 768px) {
   .navbar-item{
     display: inline;
+  }
+  .body{
+    margin-top: 163px;
   }
   .navbar{
     padding-top: 0px !important;
@@ -211,7 +342,7 @@ li {
     background-color: white;
   }
   .dropdown-content{
-    margin-left: 256px;
+    margin-left: 251px;
     min-width: 262px;
   }
 }

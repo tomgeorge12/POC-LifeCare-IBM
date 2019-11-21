@@ -33,10 +33,13 @@ class LifecareMain extends Component {
   getHospitalSearchArea(){
     return(
         <div className="search-card">
-          <input id="search" className="search-input" placeholder={"Search for Hospital/Doctor/Location"} />
-          <div className="search-button-par">
-            <select className="search-options" value={this.state.searchOption}>{this.getSearchOptions()}</select>
-            <button className="search-button">Search</button></div>
+          <div className="search-section">
+            <input id="search" className="search-input" placeholder={"Search for Hospital/Doctor/Location"} />
+            <div className="search-button-par">
+              <select className="search-options" value={this.state.searchOption}>{this.getSearchOptions()}</select>
+              <button className="search-button">Search</button>
+            </div>
+        </div>
         </div>
     )
   }
@@ -45,7 +48,7 @@ class LifecareMain extends Component {
       if(idx<6){
         return(
           <div className="hospital-display-area">
-            <Card title={item.name} img={item.url} description={item.aboutUs} footerlink="Make ann appointment"/>
+            <Card title={item.name} img={item.url} address={item.address} aboutUs={item.aboutUs} footerlink="Make an appointment"/>
           </div>
         )
       }
@@ -56,11 +59,18 @@ class LifecareMain extends Component {
     
     return(
       <div className="header-main body">
-        <div className="body-content">
-            {this.getHospitalSearchArea()}
-            <div className="tbd">Under Construction</div>
+        <div className="body-content body-header-main">
+          <div className="body-header-area">
+            <h1>WE CARE</h1>
+            <span>Find Your Best Health Assistant Here!</span>
+          </div>
+          {this.getHospitalSearchArea()}
         </div>
-        <div className="body-content">
+        <div className="body-content hospital-head">
+            <span>List of Hospitals</span>
+            <a>View All..</a>
+          </div>
+        <div className="body-content hospital-area">
           {this.getHospitalDisplayArea()} 
         </div>       
       </div>
