@@ -1,12 +1,50 @@
 
 import React,{ Component } from 'react';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 import ReactDOM from 'react-dom';
 import Container from './components/Container'
+import Login from './components/login/Login';
 import './App.css';
 class App extends Component{
+    constructor(props){
+      super(props);
+      this.state={
+        signUpMode:false,
+        userLoggedIn:false
+      }
+      // this.onLoginClick=this.onLoginClick.bind(this)
+      this.onSignIn=this.onSignIn.bind(this)
+    }
+    onSignIn(){
+      location.href='/';
+      this.setState({userLoggedIn:true});                  
+    }
+    // onLoginClick(signUpMode){
+    //   location.href='/login';      
+    //   this.setState({signUpMode});
+    // }
    render(){
       return (
-        <Container/>
+        <Router>
+          <Switch>
+              <Route exact path="/">
+                <Container userLoggedIn={this.state.userLoggedIn} onLoginClick={this.onLoginClick}/>
+              </Route>
+              <Route exact path="/login">
+              <div className="login-body">              
+                <Login signUpMode={this.state.signUpMode} onSignIn={this.onSignIn}/>
+              </div>                
+              </Route>
+              <Route exact path="/searchHospital">
+                <Container userLoggedIn={this.state.userLoggedIn} searchMode/>
+              </Route>
+          </Switch>
+        </Router>
       );
    }
 }

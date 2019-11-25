@@ -4,6 +4,10 @@
   to {
     transform: rotate(360deg); } }
 
+.login-body {
+  height: 100%;
+  background-image: url("./login.jpg"); }
+
 .container {
   background-color: #0e3238; }
 
@@ -27,9 +31,13 @@
   background-color: #294a678c;
   min-width: 100px;
   min-height: 42px;
-  color: white; }
+  color: white;
+  text-decoration: none !important;
+  padding: 11px;
+  text-align: center; }
 
 .header-signup {
+  text-decoration: none !important;
   float: right;
   margin-top: 20px;
   border: none;
@@ -273,6 +281,101 @@ li {
     .body-header-area .body {
       margin-top: 163px; } }
 
+.login-main {
+  text-align: center;
+  padding-top: 8%; }
+  .login-main img {
+    width: 100%;
+    max-width: 149px;
+    height: auto;
+    margin-bottom: 5%;
+    margin-top: 5%; }
+
+.login-entry {
+  margin: 2%;
+  margin-left: 6%;
+  margin-right: 7%;
+  padding: 20px 20px 40px 20px;
+  border: 1px solid;
+  border-radius: 17px;
+  border-color: #06292982;
+  min-width: 435px;
+  float: right;
+  background-color: #0a1e3033;
+  min-height: 430px; }
+  .login-entry .login-input {
+    width: 84%;
+    min-height: 42px;
+    min-width: 128px;
+    padding: 11px;
+    border: none;
+    outline: none;
+    margin: 12px;
+    background-color: white !important;
+    border-radius: 2px; }
+
+.login-checkbox-remember {
+  display: inline;
+  margin-left: 16px;
+  margin-right: 25.5%;
+  color: white; }
+
+.login-button {
+  border: none;
+  background-color: #b1f2f9a1;
+  min-width: 100px;
+  min-height: 42px;
+  color: black;
+  font-weight: 700;
+  margin-top: 3%;
+  outline: none;
+  border-radius: 2px; }
+
+.submit-button {
+  margin-right: 30%; }
+
+.cancel-button {
+  background-color: white !important;
+  margin-right: 12px; }
+
+.login-error {
+  display: block;
+  color: #e40808;
+  text-align: left;
+  margin-left: 8%;
+  background-color: #ffffff14;
+  padding-left: 7px;
+  width: 84%; }
+
+.login-signup-area {
+  margin-top: 5%;
+  color: white; }
+  .login-signup-area button {
+    outline: none;
+    cursor: pointer;
+    margin-right: 4%; }
+
+.login-signup-link {
+  border: none;
+  background: none;
+  padding-right: 46%; }
+
+.detail-hospital-search-input {
+  width: 40%;
+  min-height: 42px;
+  min-width: 128px;
+  padding: 11px;
+  display: inline;
+  margin: 10px 10px 20px 0px;
+  outline: none; }
+
+.detail-hospital-search-section {
+  border-bottom: 1px solid;
+  border-bottom-color: #cacdd7; }
+
+.margin-10 {
+  margin: 10px; }
+
 @media (min-width: 1013px) {
   .body-content {
     display: flex; }
@@ -299,8 +402,12 @@ li {
     margin-left: 251px;
     min-width: 262px; } }
 
-/* .navbar{
-  padding-top: 17px !important;
-  padding-left: 6px;
-  padding-bottom: 17px;
-} */
+@media (max-width: 500px) {
+  .login-entry {
+    min-width: auto; }
+  .login-checkbox-remember {
+    margin-right: 9.5%; }
+  .login-signup-area button {
+    margin-left: 35%;
+    width: 179px;
+    margin-right: 0px; } }

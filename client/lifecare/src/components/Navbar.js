@@ -18,13 +18,13 @@ class Navbar extends Component {
                         </button>
                         <div className="dropdown-content">
                             <a href="#">Configure Hospital</a>
-                            <a href="#">Search for Hospital</a>
+                            <a href="/searchHospital">Search for Hospital</a>
                         </div>
                     </div>
                 )
             }
             return(
-                <li className="navbar-item"><a className="navbar-link" >{item}</a></li>
+                <li className="navbar-item"><a className="navbar-link" href='/'>{item}</a></li>
             )
         });
     }

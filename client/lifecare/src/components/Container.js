@@ -9,10 +9,10 @@ class Container extends Component {
     return(
         <div>
           <div className="sticky">
-            <Header />
+            <Header userLoggedIn={this.props.userLoggedIn}/>
             <Navbar />
           </div>
-          <LifecareMain />
+          <LifecareMain {...this.props}/>
           <Footer />
         </div>
     )

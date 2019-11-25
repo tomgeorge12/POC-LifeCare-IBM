@@ -19,6 +19,7 @@
     "react-flipcard": "^0.2.1",
     "react-paginate": "^4.4.2",
     "react-rating": "^0.7.1",
+    "react-router-dom": "^5.1.2",
     "react-router-link": "^2.0.2",
     "react-scripts": "2.1.5",
     "react-search-input": "^0.10.4",
