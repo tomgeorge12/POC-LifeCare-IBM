@@ -246,7 +246,8 @@ li {
     background-color: #596b60; }
 
 .hospital-head {
-  margin-left: 16px; }
+  margin-left: 16px;
+  display: block; }
   .hospital-head span {
     font-weight: 700;
     font-size: 18px; }
@@ -376,13 +377,55 @@ li {
 .margin-10 {
   margin: 10px; }
 
+.search-addhospital-button {
+  float: right;
+  min-height: 42px;
+  min-width: 140px;
+  border: none;
+  background-color: #18500aa1;
+  color: white;
+  border: none;
+  outline: none;
+  margin-top: 13px; }
+
+.register-hos-form {
+  margin: 20px; }
+  .register-hos-form td {
+    padding: 5px; }
+    .register-hos-form td input {
+      min-width: 330px;
+      min-height: 35px; }
+    .register-hos-form td textarea {
+      min-width: 330px;
+      max-width: 330px;
+      min-height: 86px; }
+
+.register-hos label {
+  font-size: large; }
+
+.register-hos button {
+  min-height: 42px;
+  min-width: 140px;
+  border: none;
+  background-color: #18500aa1;
+  color: white;
+  border: none;
+  outline: none;
+  margin: 25px auto auto 20px; }
+
+.register-hos .cancel-button {
+  background-color: grey !important; }
+
 @media (min-width: 1013px) {
   .body-content {
     display: flex; }
   .hospital-area {
-    padding-left: 4%; }
+    padding-left: 4%;
+    display: inline-block; }
   .hospital-display-area {
-    padding-left: 0%; } }
+    padding-left: 0%;
+    display: inline-grid;
+    width: 30%; } }
 
 @media (min-width: 768px) {
   .navbar-item {
@@ -400,7 +443,10 @@ li {
     background-color: white; }
   .dropdown-content {
     margin-left: 251px;
-    min-width: 262px; } }
+    min-width: 262px; }
+  .hospital-area {
+    padding-left: 4%;
+    display: inline-block; } }
 
 @media (max-width: 500px) {
   .login-entry {

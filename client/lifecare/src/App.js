@@ -33,15 +33,43 @@ class App extends Component{
         <Router>
           <Switch>
               <Route exact path="/">
-                <Container userLoggedIn={this.state.userLoggedIn} onLoginClick={this.onLoginClick}/>
+                <Container 
+                  userLoggedIn={this.state.userLoggedIn}
+                  // onLoginClick={this.onLoginClick}
+                  view={'dashboard'}
+                />
               </Route>
               <Route exact path="/login">
-              <div className="login-body">              
-                <Login signUpMode={this.state.signUpMode} onSignIn={this.onSignIn}/>
-              </div>                
+                <div className="login-body">              
+                  <Login
+                    signUpMode={this.state.signUpMode}
+                    onSignIn={this.onSignIn}
+                  />
+                </div>                
+              </Route>
+              <Route exact path="/appointment">
+                <Container
+                  userLoggedIn={this.state.userLoggedIn}
+                  view={'appointment'}
+                />
               </Route>
               <Route exact path="/searchHospital">
-                <Container userLoggedIn={this.state.userLoggedIn} searchMode/>
+                <Container
+                  userLoggedIn={this.state.userLoggedIn}
+                  view={'hospital'}
+                />
+              </Route>
+              <Route exact path="/profile">
+                <Container
+                  userLoggedIn={this.state.userLoggedIn}
+                  view={'dashboard'}
+                />
+              </Route>
+              <Route exact path="/contactus">
+                <Container
+                  userLoggedIn={this.state.userLoggedIn}
+                  view={'doashboard'}
+                />
               </Route>
           </Switch>
         </Router>

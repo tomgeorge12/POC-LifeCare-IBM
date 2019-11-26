@@ -3,6 +3,9 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+// #root{
+//   background-color: #f4f4f4
+// }
 .login-body{
   height: 100%;
   background-image: url("./login.jpg");  
@@ -269,6 +272,7 @@ li {
 // }
 .hospital-head{
   margin-left: 16px;
+  display: block;
   span{
     font-weight: 700;
     font-size: 18px;
@@ -418,15 +422,63 @@ li {
 .margin-10{
   margin: 10px;
 }
+.search-addhospital-button{
+  float: right;
+  min-height: 42px;
+  min-width: 140px;
+  border: none;
+  background-color: #18500aa1;
+  color: white;
+  border: none;
+  outline: none;
+  margin-top: 13px;
+}
+.register-hos-form{
+  margin: 20px;
+  td{
+    padding: 5px;
+    input{
+      min-width: 330px;
+      min-height: 35px;
+    }
+    textarea{
+      min-width: 330px;
+      max-width: 330px;
+      min-height: 86px;
+    }
+  }
+}
+.register-hos{
+  label{
+    font-size:large
+  }
+  button{
+    min-height: 42px;
+    min-width: 140px;
+    border: none;
+    background-color: #18500aa1;
+    color: white;
+    border: none;
+    outline: none;
+    margin: 25px auto auto 20px;
+  }
+  .cancel-button{
+    // color: black;
+    background-color: grey !important;
+  }
+}
 @media (min-width: 1013px) {
   .body-content{
     display: flex;
   }
   .hospital-area{
     padding-left: 4%;
+    display: inline-block;
   }
   .hospital-display-area{
     padding-left: 0%;
+    display: inline-grid;
+    width: 30%;
   }
 }
 @media (min-width: 768px) {
@@ -450,6 +502,10 @@ li {
   .dropdown-content{
     margin-left: 251px;
     min-width: 262px;
+  }
+  .hospital-area{
+    padding-left: 4%;
+    display: inline-block;
   }
 }
 //Mobile devices
