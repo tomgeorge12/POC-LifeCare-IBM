@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import map from 'lodash/map';
 import $ from 'jquery';
-import Card from './card/Card.component';
+import Card from './card/Hospital.Card';
 import AddHospitalCard from './card/Addhospital.Card';
 
 class HospitalContainer extends Component {
@@ -27,7 +27,6 @@ class HospitalContainer extends Component {
       let arr=Object.keys(data).map((k)=>data[k]);
         this.setState({hospitals:data});
     });
-    
   }
 
   getHospitalSearchArea(page){

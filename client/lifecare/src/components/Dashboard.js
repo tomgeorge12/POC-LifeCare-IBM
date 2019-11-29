@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import map from 'lodash/map';
 import $ from 'jquery';
-import Card from './card/Card.component';
+import Card from './card/Hospital.Card';
 
 class LifecareMain extends Component {
   constructor(props){

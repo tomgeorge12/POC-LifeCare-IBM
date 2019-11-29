@@ -1,6 +1,4 @@
-{
-  "cardContent": {
-    "relationItems": [
+[
       {
         "lookupid": "001",
         "defaultFlag": "TRUE",
@@ -429,7 +427,4 @@
         "aboutUs": " sample ",
         "contactUs": " 987654321  "
       }
-    ],
-    "type": "Life Care"
-  }
-}
+    ]

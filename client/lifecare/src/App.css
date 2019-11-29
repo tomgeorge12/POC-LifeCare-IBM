@@ -8,6 +8,18 @@
   height: 100%;
   background-image: url("./login.jpg"); }
 
+.button {
+  margin: 10px;
+  border: none;
+  background-color: #294a678c;
+  min-width: 100px;
+  min-height: 42px;
+  color: white;
+  text-decoration: none !important;
+  padding: 11px;
+  text-align: center;
+  outline: none; }
+
 .container {
   background-color: #0e3238; }
 
@@ -416,6 +428,132 @@ li {
 .register-hos .cancel-button {
   background-color: grey !important; }
 
+.simple-hos-card-area {
+  padding: 10px;
+  display: inline-grid;
+  width: 100%;
+  background-color: #09589c38;
+  min-height: 136px;
+  min-width: 350px;
+  margin: 5px;
+  max-height: 150px;
+  color: #4a4a4a;
+  font-size: 12px; }
+  .simple-hos-card-area .simple-hos-card-btn {
+    float: right;
+    background-color: #ffffffa8;
+    margin-right: 0px;
+    color: #02131dd4;
+    display: grid;
+    margin-top: 24px; }
+  .simple-hos-card-area .simple-hos-card-btn:hover {
+    color: #ffffffff;
+    background-color: #09589c8a; }
+  .simple-hos-card-area p {
+    font-size: 11px;
+    width: 300px;
+    height: 25px; }
+  .simple-hos-card-area .simple-hos-title {
+    font-size: 20px;
+    font-family: serif;
+    color: black;
+    margin-bottom: 15px; }
+  .simple-hos-card-area .simple-hos-details span {
+    display: block; }
+
+.doctor-card {
+  width: 60%;
+  margin: 16px;
+  padding: 11px;
+  background-color: #0b7b2314;
+  min-height: 215px; }
+  .doctor-card label {
+    font-size: 20px;
+    font-family: serif;
+    padding: 4px; }
+  .doctor-card .doctor-img {
+    width: 100%;
+    height: 100px;
+    max-width: 100px;
+    position: absolute;
+    margin-top: 35px; }
+  .doctor-card .doctor-details {
+    float: right;
+    text-align: right;
+    margin-top: 20px;
+    font-size: 13px; }
+    .doctor-card .doctor-details span {
+      display: block;
+      padding: 2px;
+      max-width: 430px; }
+    .doctor-card .doctor-details .doctor-description {
+      min-height: 40px; }
+    .doctor-card .doctor-details button {
+      margin: 0px !important;
+      min-width: 200px; }
+
+.doctor-filter {
+  position: absolute;
+  float: right;
+  margin-left: 48%;
+  border-left: 1px solid #00000030;
+  padding: 12px;
+  height: 120%; }
+
+.date-time-picker-table th {
+  padding: 10px 0px 10px 3px;
+  font-size: 18px; }
+
+.date-time-picker-table .date-time-header {
+  font-weight: 600; }
+
+.date-time-picker-table td {
+  padding: 8px;
+  width: 141px;
+  background-color: #edf5ef;
+  border: 5px solid white;
+  text-align: center; }
+
+.date-time-picker-table td:hover {
+  cursor: pointer;
+  background-color: #949494; }
+
+.date-time-picker-table .active {
+  background-color: #949494; }
+
+.patient-details-area table {
+  margin: 30px 0px 20px 3px; }
+
+.patient-details-area .patient-form-input {
+  padding: 5px;
+  min-width: 261px;
+  min-height: 35px;
+  border: none;
+  outline: none; }
+
+.patient-details-area #radio {
+  margin: 10px; }
+
+.patient-details-area th {
+  padding: 10px 0px 10px 3px;
+  font-size: 18px; }
+
+.patient-details-area td {
+  padding: 8px;
+  width: 141px;
+  background-color: #edf5ef;
+  border: 2px solid white; }
+
+.appointment-confirmation-area th {
+  padding: 10px 0px 10px 3px;
+  font-size: 18px; }
+
+.appointment-confirmation-area td {
+  padding: 8px;
+  width: 340px;
+  background-color: #edf5ef;
+  border: 2px solid white; }
+
 @media (min-width: 1013px) {
   .body-content {
     display: flex; }
@@ -446,7 +584,12 @@ li {
     min-width: 262px; }
   .hospital-area {
     padding-left: 4%;
-    display: inline-block; } }
+    display: inline-block; }
+  .simple-hos-card-area {
+    width: 48%;
+    min-width: 400px; }
+    .simple-hos-card-area .simple-hos-card-btn {
+      display: grid; } }
 
 @media (max-width: 500px) {
   .login-entry {

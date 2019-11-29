@@ -8,6 +8,7 @@ var hospitalDetails=require('./mock/hospitaldetails.json');
 let bodyParser = require('body-parser');
 let find = require('lodash/find');
 let isEmpty = require('lodash/isEmpty');
+// let find = require('lodash/find');
 let appointment=require('./mock/appointment.json');
 const PORT = process.env.PORT || 8282;
 
@@ -19,27 +20,35 @@ const getDecodedString = (value) => {
   return text;
 }
 app.get('/hospitals/',function(req,res){
-  MongoClient.connect(uri, (err, client)=>{
-    if(err){
-      console.log('Error occurred while connecting to MongoDB Atlas...\n',err);      
-    }
-    console.log('Connected...');
-    const hospitalsCollection = client.db("lifecare").collection("hospitals");
-    hospitalsCollection.find({}).toArray((err, items)=>{
-      if(!err){
-        res.header('Access-Control-Allow-Origin','*');
-        res.json(items);
-      } else {
-        console.log('Error reading data | ', err);
+  if(process.ENV==='production'){
+    MongoClient.connect(uri, (err, client)=>{
+      if(err){
+        console.log('Error occurred while connecting to MongoDB Atlas...\n',err);      
       }
-    });
-  })
+      console.log('Connected...');
+      const hospitalsCollection = client.db("lifecare").collection("hospitals");
+      hospitalsCollection.find({}).toArray((err, items)=>{
+        if(!err){
+          res.header('Access-Control-Allow-Origin','*');
+          res.json(items);
+        } else {
+          console.log('Error reading data | ', err);
+        }
+      });
+    })
+  } else {
+    res.header('Access-Control-Allow-Origin','*');
+    res.json(hospital);
+  }
   
 });
 
 app.get('/hospitals/gethospitaldetail',function(req,res){
+  const lookupid = req.query.lookupid;
+  const doctorsList = find(hospitalDetails.hospitalDetails, {lookupid});
+  console.log('doctors=>', doctorsList)
   res.header('Access-Control-Allow-Origin','*');
-  res.json(hospitalDetails);
+  res.json(doctorsList);
 });
 
 app.use(bodyParser.urlencoded({
