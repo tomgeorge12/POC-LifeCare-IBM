@@ -28,6 +28,7 @@ class Appointment extends Component {
       age: '',
       sex: '',
       number: '',
+      referenceId: ''
     }
     this.timeSlotTable = ['9.30 AM','10.30 AM','11.30 AM','12.30 PM','2.30 PM','3.30 PM','4.30 PM']
     this.getHospitalList=this.getHospitalList.bind(this);
@@ -36,6 +37,7 @@ class Appointment extends Component {
     this.toggleTimeSlot=this.toggleTimeSlot.bind(this);
     this.onTimeSelect=this.onTimeSelect.bind(this);
     this.onNextClickAppointment=this.onNextClickAppointment.bind(this);
+    this.onAppointmentConfirm=this.onAppointmentConfirm.bind(this);
   }
   componentDidMount(){
     let {hospitals} = this.state;
@@ -97,6 +99,32 @@ class Appointment extends Component {
   }
   onNextClickAppointment(){
     this.setState({displayMode:CONFIRMATION});
+  }
+  onAppointmentConfirm(){
+    const { name, age, sex, number, date, time, doctorSelected } = this.state;
+    const appointmentDetails = {
+      name,
+      age,
+      sex,
+      number,
+      date,
+      slot:time,
+      doctor: doctorSelected
+    };
+    $.ajax({
+      type: 'POST',
+      data:appointmentDetails,
+      dataType:'json',
+      url: '/hospitals/createappointment',
+         success: (data)=> {
+           const referenceId=data.appointment.userId;
+           alert("sucessful:"+referenceId);
+           this.setState({referenceId});
+         },
+      error: function() {
+        alert('error post data...');
+      }
+    });
   }
   getPersonalInfoForm(){
     return(
@@ -212,11 +240,15 @@ class Appointment extends Component {
     )
   }
   getAppointmentConfirmation(){
-    const { name, age, sex, number, time, date, hospitalSelected, doctorSelected } = this.state;
+    const { name, age, sex, number, time, date, hospitalSelected, doctorSelected, referenceId } = this.state;
     return(
       <div className='appointment-confirmation-area'>
-        <label className='appointment-confirmation-header'>Confirm Appointment Details</label>
+        <label className='appointment-confirmation-header'>{!referenceId ? 'Confirm Appointment Details' : 'Appointment Confirmation'}</label>
         <table>
+          {referenceId && <tr>
+            <td>Reference ID: </td>
+            <td>{referenceId}</td>
+          </tr>}
           <tr>
             <th colSpan='2'>Patient Details</th>
           </tr>
@@ -256,7 +288,7 @@ class Appointment extends Component {
             <td>{doctorSelected.name}</td>
           </tr>
         </table>
-        <button className='button'>{'Confirm'}</button>        
+        {!referenceId ? <button className='button' onClick={this.onAppointmentConfirm}>{'Confirm'}</button> : <button className='button' onClick={()=>{window.location.href='/appointment'}}>{'Back to Home'}</button>}
       </div>
     )
   }

@@ -31,7 +31,7 @@ class AddhospitalCard extends Component {
           success: (data)=> {
             alert("sucessful");
             //  console.log(data);
-            location.href='/searchHospital'
+            window.location.href='/searchHospital'
           },
       error: function() {
         alert('error post data...');

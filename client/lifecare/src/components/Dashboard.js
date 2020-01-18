@@ -42,7 +42,7 @@ class LifecareMain extends Component {
             <input id="search" className="search-input" placeholder={"Search for Hospital/Doctor/Location"} />
             <div className="search-button-par">
               <select className="search-options" value={this.state.searchOption}>{this.getSearchOptions()}</select>
-              <button className="search-button" onClick={()=>location.href='/searchHospital'}>Search</button>
+              <button className="search-button" onClick={()=>window.location.href='/searchHospital'}>Search</button>
             </div>
           </div>
         </div>

@@ -21,7 +21,7 @@ class App extends Component{
       this.onSignIn=this.onSignIn.bind(this)
     }
     onSignIn(){
-      location.href='/';
+      window.location.href='/';
       this.setState({userLoggedIn:true});                  
     }
     // onLoginClick(signUpMode){
