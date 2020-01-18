@@ -77,9 +77,9 @@ class Appointment extends Component {
     });
     return (
       <div>
-        <div>
+        {/* <div>
           <label>Select Hospital</label>
-        </div>
+        </div> */}
         <div>
           <input id="search" value={this.state.searchTerm} onChange={this.onSearchInputChange} className="detail-hospital-search-input" placeholder={"Search for Hospital/Doctor/Location"} />
           <button className="search-button" onClick={this.onSearchClick}>Search</button>
@@ -91,7 +91,7 @@ class Appointment extends Component {
   toggleTimeSlot(value, doctorRegNo=''){
     let {doctorSelected} = this.state;
     if(doctorRegNo) doctorSelected = _.find(this.state.doctors, {regNo:doctorRegNo});
-    this.setState({timeSlot:value, doctorSelected})
+    this.setState({timeSlot:value, doctorSelected}  )
   }
   onTimeSelect(e, time){
     e.target.className = e.target.className ? '' : 'active';
@@ -243,11 +243,11 @@ class Appointment extends Component {
     const { name, age, sex, number, time, date, hospitalSelected, doctorSelected, referenceId } = this.state;
     return(
       <div className='appointment-confirmation-area'>
-        <label className='appointment-confirmation-header'>{!referenceId ? 'Confirm Appointment Details' : 'Appointment Confirmation'}</label>
+        {/* <label className='appointment-confirmation-header'>{!referenceId ? 'Confirm Appointment Details' : 'Appointment Confirmation'}</label> */}
         <table>
           {referenceId && <tr>
-            <td>Reference ID: </td>
-            <td>{referenceId}</td>
+            <td><label className='bold'>Reference ID: </label></td>
+            <td><label className='bold'>{referenceId}</label></td>
           </tr>}
           <tr>
             <th colSpan='2'>Patient Details</th>
@@ -288,12 +288,14 @@ class Appointment extends Component {
             <td>{doctorSelected.name}</td>
           </tr>
         </table>
-        {!referenceId ? <button className='button' onClick={this.onAppointmentConfirm}>{'Confirm'}</button> : <button className='button' onClick={()=>{window.location.href='/appointment'}}>{'Back to Home'}</button>}
+        {!referenceId ?
+          <button className='button' onClick={this.onAppointmentConfirm}>{'Confirm'}</button>
+          : <button className='button' onClick={()=>{window.location.href='/appointment'}}>{'Back to Home'}</button>}
       </div>
     )
   }
   render () {
-    const { displayMode } = this.state;
+    const { displayMode, hospitalSelected, name, referenceId } = this.state;
     let _content = null;
     switch (displayMode) {
       case HOSPITAL_SELECTION:
@@ -311,9 +313,14 @@ class Appointment extends Component {
     }
     return(
         <div className="header-main body">
-          <div>
-            <label>Book an Appointment</label>
-            <label>easy 3 steps 1->2->3</label>
+          <div className="breadcrumbs flat">
+            <a
+              className={`${displayMode===HOSPITAL_SELECTION ? "active" : ''} ${hospitalSelected ? 'selected' : ''} ${referenceId ? 'inactive' : ''}`}
+              onClick={()=>{this.setState({displayMode:HOSPITAL_SELECTION, hospitalSelected: '', name:''})}}>
+                Hospital Selection
+            </a>
+            <a className={`${displayMode===APPOINTMENT ? "active" : ''}  ${name ? 'selected' : ''} ${referenceId ? 'inactive' : ''}`}>Doctor/Slot Selection</a>
+            <a className={`${displayMode===CONFIRMATION ? "active" : ''} ${referenceId ? 'inactive selected' : ''}`}>Appointment Confirmation</a>
           </div>
           <div>
             {_content}
