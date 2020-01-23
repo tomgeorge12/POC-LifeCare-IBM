@@ -43,6 +43,8 @@ class Login extends Component {
         dataType:'json',
         url: '/users/login',
            success: (data)=> {
+            sessionStorage.userLoggedIn = data.loginSuccess;
+            sessionStorage.username = data.user;
              this.props.onSignIn(data.loginSuccess);
            },
         error: (error)=> {

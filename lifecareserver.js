@@ -66,7 +66,7 @@ app.post('/hospitals/createappointment',function(req,res){
     if(!err){
       const appointmentCollection = client.db("lifecare").collection("appointment");
       let appointment_data = {
-        userId: user_ID,
+        ReferenceID: user_ID,
         patientname: req.body.name,
         patientage: req.body.age,
         patientsex: req.body.sex,
@@ -145,7 +145,7 @@ app.post('/users/login',function(req,res){
       user = find(items, {'username' : username, 'password': password});
       console.log('info', 'Registered user:', isEmpty(user)); 
       if(!isEmpty(user)) {
-        res.header('Access-Control-Allow-Origin','*').json({loginSuccess : true, status : 200}).status(200);
+        res.header('Access-Control-Allow-Origin','*').json({user: username, loginSuccess : true, status : 200}).status(200);
       } else {
         res.header('Access-Control-Allow-Origin','*').status(400).json({loginSuccess : false, status : 400});
       }               
@@ -191,5 +191,5 @@ if(process.env.NODE_ENV === 'production'){
 }
 
 app.listen(PORT,function(){
-  console.log('App running successfully on ', PORT);
+  console.log('Server started at: ', PORT);
 });

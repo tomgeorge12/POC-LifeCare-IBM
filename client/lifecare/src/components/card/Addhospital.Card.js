@@ -31,6 +31,7 @@ class AddhospitalCard extends Component {
           success: (data)=> {
             alert("sucessful");
             //  console.log(data);
+// eslint-disable-next-line no-restricted-globals
             window.location.href='/searchHospital'
           },
       error: function() {

@@ -19,8 +19,10 @@ class Container extends Component {
     return(
         <div className="header-main">
           <img className="header-logo" src={logo}/>
-          {!this.props.userLoggedIn && <Link to="/login" className="header-signin" >Signin</Link>}
-          {!this.props.userLoggedIn && <Link to="/login" className="header-signup" >SignUp</Link>}
+          {!sessionStorage.userLoggedIn && <Link to="/login" className="header-signin" >Signin</Link>}
+          {!sessionStorage.userLoggedIn && <Link to="/login" className="header-signup" >SignUp</Link>}
+          {/* {sessionStorage.userLoggedIn && <div>Welcome, {sessionStorage.username}<Link to="/login" className="header-signup" >Signout</Link></div>} */}
+          {sessionStorage.userLoggedIn && <Link to="/login" className="header-signin" >Signout</Link>}
         </div>
     )
   }

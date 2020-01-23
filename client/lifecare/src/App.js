@@ -21,6 +21,7 @@ class App extends Component{
       this.onSignIn=this.onSignIn.bind(this)
     }
     onSignIn(){
+// eslint-disable-next-line no-restricted-globals
       window.location.href='/';
       this.setState({userLoggedIn:true});                  
     }

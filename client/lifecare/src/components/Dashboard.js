@@ -26,7 +26,6 @@ class LifecareMain extends Component {
       let arr=Object.keys(data).map((k)=>data[k]);
         this.setState({hospitals:data});
     });
-    
   }
 
   getSearchOptions(){
@@ -55,7 +54,7 @@ class LifecareMain extends Component {
       if(idx<6){
         return(
           <div className="hospital-display-area">
-            <Card title={item.name} img={item.url} address={item.address} aboutUs={item.aboutUs} footerlink="Make an appointment"/>
+            <Card title={item.name} img={item.url} address={item.address} aboutUs={item.aboutUs} footerlink="Make an appointment" onFooterClick={()=>{sessionStorage.hospitalLookupid=item.lookupid; window.location.href='/appointment'}}/>
           </div>
         )
       }

@@ -41,9 +41,15 @@ class Appointment extends Component {
   }
   componentDidMount(){
     let {hospitals} = this.state;
+    const hospitalLookupid = this.props.hospitalLookupid || sessionStorage.hospitalLookupid;
     $.getJSON('/hospitals',(data)=>{
       let arr=Object.keys(data).map((k)=>data[k]);
-        this.setState({hospitals:data});
+        this.setState({hospitals:data},()=>{
+          if(hospitalLookupid) {
+            this.onAppointmentClick(hospitalLookupid);
+            sessionStorage.hospitalLookupid = '';
+          }
+        });
     });
   }
 

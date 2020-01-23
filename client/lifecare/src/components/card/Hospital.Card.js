@@ -25,7 +25,7 @@ class Card extends Component {
         <div className="hospital-card-detail-area">
             <span>{title}</span>          
             <p>{address}</p>
-            <button>{footerlink}</button>
+            <button onClick={this.onClick}>{footerlink}</button>
           </div>
       )
     } else {
